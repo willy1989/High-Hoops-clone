@@ -10,9 +10,12 @@ public class BallYMovement : MonoBehaviour
 
     [HideInInspector] public bool CanMove;
 
+    private float startYPosition;
+
     private void Awake()
     {
         CanMove = true;
+        startYPosition = transform.position.y;
     }
 
     private void Update()
@@ -35,5 +38,10 @@ public class BallYMovement : MonoBehaviour
         float newYPosition = nextWaypoint.BounceApex * yMovementFunction.Evaluate(t);
 
         transform.position = new Vector3(transform.position.x, newYPosition, transform.position.z);
-    } 
+    }
+
+    public void Reset()
+    {
+        transform.position = new Vector3(transform.position.x, startYPosition, transform.position.z);
+    }
 }

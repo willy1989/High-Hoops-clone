@@ -16,6 +16,7 @@ public class GameLoopManager : Singleton<GameLoopManager>
     [SerializeField] private BallDeath ballDeath;
     [SerializeField] private BallColorManager ballColorManager;
     [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
+    [SerializeField] private BlocksPositionManager blocksPositionManager;
 
     protected override void Awake()
     {
@@ -47,6 +48,8 @@ public class GameLoopManager : Singleton<GameLoopManager>
         levelLoader.LoadLevel();
 
         ballXMovement.Reset();
+        ballYMovement.Reset();
+        ballZMovement.Reset();
         ballColorManager.Reset();
         ballDeath.Reset();
         
@@ -54,6 +57,10 @@ public class GameLoopManager : Singleton<GameLoopManager>
 
         endArea = levelLoader.CurrentLevel.EndArea;
         endArea.ReachLevelEndEvent += GameWinPhase;
+
+        blocksPositionManager.SetNextBlockPositionSetterGroups(levelLoader.CurrentLevel.BlockPositionSetterGroups);
+
+        blocksPositionManager.Reset();
 
         dragInput.ListenToFirstInput();
     }

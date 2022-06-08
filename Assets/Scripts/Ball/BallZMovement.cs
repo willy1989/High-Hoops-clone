@@ -6,7 +6,11 @@ public class BallZMovement : MonoBehaviour
 {
     [SerializeField] private float zMovementSpeed;
 
+    [SerializeField] private Transform ballSpawnPosition;
+
     [HideInInspector] public bool CanMove;
+
+
 
     private void Awake()
     {
@@ -24,5 +28,10 @@ public class BallZMovement : MonoBehaviour
             return;
 
         transform.position += Vector3.forward * zMovementSpeed * Time.deltaTime;
+    }
+
+    public void Reset()
+    {
+        transform.position = ballSpawnPosition.position;
     }
 }

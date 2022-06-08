@@ -10,8 +10,12 @@ public class Level : MonoBehaviour
 
     [SerializeField] private EndArea endArea;
 
+    [SerializeField] private BlockPositionSetterGroup[] blockPositionSetterGroups;
+
     public BallNavigationWaypoint FirstWayPoint => firstWayPoint;
     public BallNavigationWaypoint SecondWayPoint => secondWayPoint;
 
     public EndArea EndArea => endArea;
+
+    public BlockPositionSetterGroup[] BlockPositionSetterGroups => blockPositionSetterGroups;
 }

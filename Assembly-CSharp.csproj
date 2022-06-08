@@ -62,7 +62,7 @@
     <Compile Include="Assets\Scripts\Ball\BallNavigationWaypointManager.cs" />
     <Compile Include="Assets\Scripts\Ball\BallZMovement.cs" />
     <Compile Include="Assets\Scripts\Ball\BallDeath.cs" />
-    <Compile Include="Assets\Scripts\BlackWhiteBlock.cs" />
+    <Compile Include="Assets\Scripts\Block\BlackWhiteBlock.cs" />
     <Compile Include="Assets\Scripts\Ball\BallNavigationWaypoint.cs" />
     <Compile Include="Assets\Scripts\Hoops\HoopArea_Center.cs" />
     <Compile Include="Assets\Scripts\Ball\BallYMovement.cs" />
@@ -71,11 +71,16 @@
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\Ball\BallColorManager.cs" />
     <Compile Include="Assets\Scripts\Hoops\HoopArea.cs" />
-    <Compile Include="Assets\Scripts\EndArea.cs" />
+    <Compile Include="Assets\Scripts\Block\EndArea.cs" />
     <Compile Include="Assets\Scripts\GameLoopManager.cs" />
+    <Compile Include="Assets\Scripts\Block\MovingBlock.cs" />
     <Compile Include="Assets\Scripts\Level.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
-    <Compile Include="Assets\Scripts\MovingBlock.cs" />
+    <Compile Include="Assets\Scripts\Block\Block positioning\BlockPositionSetter.cs" />
+    <Compile Include="Assets\Scripts\Block\Block positioning\BlocksPositionManager.cs" />
+    <Compile Include="Assets\Scripts\Block\Block positioning\BlockPositionSetterGroup.cs" />
+    <Compile Include="Assets\Scripts\Block\BlockAnimation.cs" />
+    <Compile Include="Assets\Scripts\Ball\BallAnimation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

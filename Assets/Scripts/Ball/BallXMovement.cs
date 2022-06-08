@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BallXMovement : MonoBehaviour
 {
-    [SerializeField] private Transform ballSpawnPosition;
-
     [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
 
     [SerializeField] private Transform xAxisTarget;
@@ -90,8 +88,7 @@ public class BallXMovement : MonoBehaviour
 
     public void Reset()
     {
-        transform.position = ballSpawnPosition.position;
-        xAxisTarget.position = ballSpawnPosition.position;
+        xAxisTarget.localPosition = Vector3.zero;
         autoPilotOnOff = false;
     }
 }

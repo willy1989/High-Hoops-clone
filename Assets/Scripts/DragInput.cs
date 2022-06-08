@@ -26,7 +26,6 @@ public class DragInput : MonoBehaviour
             Vector2 temp = touch.deltaPosition;
 
             DragInputVector = new Vector2(temp.x / Screen.width, temp.y / Screen.height);
-            Debug.Log("DragInputVector.magnitude = " + DragInputVector.magnitude);
         }
 
         else
