@@ -69,19 +69,23 @@
     <Compile Include="Assets\Scripts\ColorWall.cs" />
     <Compile Include="Assets\Scripts\Block\Block positioning\BlocksPositionManager.cs" />
     <Compile Include="Assets\Scripts\Ball\BallZMovement.cs" />
+    <Compile Include="Assets\Scripts\Hoops\HoopAnimation.cs" />
     <Compile Include="Assets\Scripts\Block\BlackWhiteBlock.cs" />
     <Compile Include="Assets\Scripts\Block\Block positioning\BlockPositionSetter.cs" />
     <Compile Include="Assets\Scripts\Block\BlockAnimation.cs" />
     <Compile Include="Assets\Scripts\Ball\BallNavigationWaypoint.cs" />
     <Compile Include="Assets\Scripts\Hoops\HoopArea_Center.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />
+    <Compile Include="Assets\Scripts\UIAnimation.cs" />
     <Compile Include="Assets\Scripts\AutoPilotManager.cs" />
+    <Compile Include="Assets\Scripts\Ball\BallVfx.cs" />
+    <Compile Include="Assets\Scripts\CameraManager.cs" />
     <Compile Include="Assets\Scripts\Block\EndArea.cs" />
     <Compile Include="Assets\Scripts\GameLoopManager.cs" />
     <Compile Include="Assets\Scripts\Block\MovingBlock.cs" />
     <Compile Include="Assets\Scripts\Level.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
-    <Compile Include="Assets\Scripts\Ball\BallVfx.cs" />
+    <Compile Include="Assets\Scripts\Hoops\HoopVfx.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

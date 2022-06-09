@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HoopArea_Side : HoopArea
 {
+    [SerializeField] private HoopAnimation hoopAnimation;
+
     new private void Awake()
     {
         base.Awake();
@@ -11,6 +13,7 @@ public class HoopArea_Side : HoopArea
 
     protected override void DoCollisionAction()
     {
+        hoopAnimation.SpinHoopAnimation();
         Debug.Log("Player ball hit SIDE of hoop");
     }
 }

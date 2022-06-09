@@ -17,6 +17,7 @@ public class GameLoopManager : Singleton<GameLoopManager>
     [SerializeField] private BallColorManager ballColorManager;
     [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
     [SerializeField] private BlocksPositionManager blocksPositionManager;
+    [SerializeField] private CameraManager cameraManager;
 
     protected override void Awake()
     {
@@ -41,9 +42,7 @@ public class GameLoopManager : Singleton<GameLoopManager>
         ballXMovement.CanMove = false;
         ballYMovement.CanMove = false;
 
-        UIManager.Instance.ToggleLoseScreen(false);
-        UIManager.Instance.ToggleWinScreen(false);
-        UIManager.Instance.ToggleStartScreen(true);
+        UIManager.Instance.Reset();
 
         levelLoader.LoadLevel();
 
@@ -62,6 +61,10 @@ public class GameLoopManager : Singleton<GameLoopManager>
 
         blocksPositionManager.Reset();
 
+        cameraManager.Reset();
+
+        AutoPilotManager.Instance.Reset();
+
         dragInput.ListenToFirstInput();
     }
 
@@ -70,6 +73,8 @@ public class GameLoopManager : Singleton<GameLoopManager>
         ballZMovement.CanMove = true;
         ballXMovement.CanMove = true;
         ballYMovement.CanMove = true;
+
+        cameraManager.SwitchToFollowCamera();
 
         UIManager.Instance.ToggleStartScreen(false);
     }

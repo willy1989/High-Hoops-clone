@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 1183349697046586354}
   - component: {fileID: 1406832707679782834}
   m_Layer: 0
-  m_Name: Block
+  m_Name: Block model
   m_TagString: BounceBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -21,9 +21,8 @@ public class BallXMovement : MonoBehaviour
 
     [HideInInspector] public bool CanMove;
 
-    [SerializeField] private bool autoPilotOnOff;
+    [SerializeField] public bool AutoPilotOnOff;
 
-    [SerializeField] private float autoPilotDuration;
 
     private void Awake()
     {
@@ -32,30 +31,13 @@ public class BallXMovement : MonoBehaviour
 
     private void Update()
     {
-        if (autoPilotOnOff == true)
+        if (AutoPilotOnOff == true)
             AutoPilotXAxisMovement();
 
         else if(CanMove == true && dragInput.DragInputVector != Vector2.zero)
             MoveTarget();
 
         MoveBallTowardsTarget();
-    }
-
-    public void StartAutoPilot()
-    {
-        if (autoPilotOnOff)
-            return;
-
-        StartCoroutine(AutoPilot());
-    }
-
-    private IEnumerator AutoPilot()
-    {
-        autoPilotOnOff = true;
-
-        yield return new WaitForSeconds(autoPilotDuration);
-
-        autoPilotOnOff = false;
     }
 
     private void MoveTarget()
@@ -89,6 +71,6 @@ public class BallXMovement : MonoBehaviour
     public void Reset()
     {
         xAxisTarget.localPosition = Vector3.zero;
-        autoPilotOnOff = false;
+        AutoPilotOnOff = false;
     }
 }

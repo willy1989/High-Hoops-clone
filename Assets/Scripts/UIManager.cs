@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -9,10 +10,32 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject winScreen;
 
     [SerializeField] private float showStartScreenDelay;
-    
+
+    [SerializeField] private Text Aletter;
+    [SerializeField] private Text Uletter;
+    [SerializeField] private Text Tletter;
+    [SerializeField] private Text Oletter;
+
+    [SerializeField] private RawImage autoPilotDurationBar;
+
+    private Dictionary<AutoLetter, Text> autoLetterDictionnary = new Dictionary<AutoLetter, Text>();
+
+
     protected override void Awake()
     {
         base.Awake();
+
+        autoLetterDictionnary.Add(AutoLetter.A, Aletter);
+        autoLetterDictionnary.Add(AutoLetter.U, Uletter);
+        autoLetterDictionnary.Add(AutoLetter.T, Tletter);
+        autoLetterDictionnary.Add(AutoLetter.O, Oletter);
+    }
+
+    private void Start()
+    {
+        AutoPilotManager.Instance.AutoPilotEndEvent += ResetAllAutoLetters;
+
+        AutoPilotManager.Instance.AutoPilotStartEvent += StartUpdateAutoPilotDurationBar;
     }
 
     public void ToggleStartScreen(bool onOff)
@@ -37,5 +60,60 @@ public class UIManager : Singleton<UIManager>
     public void ToggleWinScreen(bool onOff)
     {
         winScreen.SetActive(onOff);
+    }
+
+    public void ToggleAutoLetter(AutoLetter letter, bool onOff)
+    {
+        autoLetterDictionnary[letter].enabled = onOff;
+    }
+
+    private void StartUpdateAutoPilotDurationBar()
+    {
+        StartCoroutine(UpdateAutoPilotBar());
+    }
+
+    private IEnumerator UpdateAutoPilotBar()
+    {
+        autoPilotDurationBar.enabled = true;
+
+        float duration = AutoPilotManager.Instance.AutoPilotDuration;
+
+        float elapsedTime = 0;
+
+        float startWidth = autoPilotDurationBar.rectTransform.sizeDelta.x;
+
+        while (elapsedTime <= duration)
+        {
+            float t = elapsedTime / duration;
+
+            float newWidth = Mathf.Lerp(startWidth, 0f, t);
+
+            autoPilotDurationBar.rectTransform.sizeDelta = new Vector2(newWidth, autoPilotDurationBar.rectTransform.sizeDelta.y);
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        autoPilotDurationBar.rectTransform.sizeDelta = new Vector2(startWidth, autoPilotDurationBar.rectTransform.sizeDelta.y);
+
+        autoPilotDurationBar.enabled = false;
+    }
+
+    private void ResetAllAutoLetters()
+    {
+        foreach (KeyValuePair<AutoLetter, Text> item in autoLetterDictionnary)
+        {
+            item.Value.enabled = false;
+        }
+    }
+
+    public void Reset()
+    {
+        ToggleLoseScreen(false);
+        ToggleWinScreen(false);
+        ToggleStartScreen(true);
+        ResetAllAutoLetters();
+        autoPilotDurationBar.enabled = false;
     }
 }
