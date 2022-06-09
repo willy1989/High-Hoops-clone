@@ -6,11 +6,13 @@ public class BallAnimation : MonoBehaviour
 {
     [SerializeField] private Animator animator;
 
-    private void OnTriggerEnter(Collider other)
+    public void SpawnBallAnimation()
     {
-        if(other.CompareTag(Constants.BouceBlock_Tag))
-        {
-            animator.SetTrigger(Constants.BlockCollision_AnimationTrigger);
-        }
+        animator.SetTrigger(Constants.BallSpawn_AnimationTrigger);
+    }
+
+    public void BounceBallAnimation()
+    {
+        animator.SetTrigger(Constants.BlockCollision_AnimationTrigger);
     }
 }

@@ -10,5 +10,8 @@ public static class Constants
     public const string ColorWall_Tag = "ColorWall";
 
     public const string BallCollision_AnimationTrigger = "BallCollision";
+    public const string BallSpawn_AnimationTrigger = "BallSpawn";
     public const string BlockCollision_AnimationTrigger = "BlockCollision";
+    public const string StartTutorial_AnimationTrigger = "StartTutorial";
+    public const string EndTutorial_AnimationTrigger = "EndTutorial";
 }

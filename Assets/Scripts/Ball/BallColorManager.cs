@@ -7,6 +7,8 @@ public class BallColorManager : MonoBehaviour
 {
     [SerializeField] private BallColor currentBallColor;
 
+    public BallColor CurrentBallColor => currentBallColor;
+
     [SerializeField] private BallDeath ballDeath;
 
     [SerializeField] private Renderer Ballrenderer;
@@ -28,10 +30,9 @@ public class BallColorManager : MonoBehaviour
 
             if (currentBallColor != blackWhiteBlock.BallColor)
             {
-                ballDeath.ToggleBall(onOff: false);
+                ballDeath.ToggleBallOff();
                 LoseEvent?.Invoke();
             }
-                
         }
 
         else if(other.CompareTag(Constants.ColorWall_Tag))

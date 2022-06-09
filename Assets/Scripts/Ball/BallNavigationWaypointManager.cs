@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BallNavigationWaypointManager : MonoBehaviour
 {
+    [SerializeField] private BallAnimation ballAnimation;
+
     private BallNavigationWaypoint previousTarget;
 
     private BallNavigationWaypoint nextTarget;
@@ -22,6 +24,8 @@ public class BallNavigationWaypointManager : MonoBehaviour
             SetNextTarget(bounceBlock);
 
             bounceBlock.DisableBlockCollider();
+
+            ballAnimation.BounceBallAnimation();
         }
 
         else if(other.CompareTag(Constants.ColorWall_Tag))
