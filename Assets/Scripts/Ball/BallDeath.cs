@@ -6,10 +6,7 @@ using UnityEngine.VFX;
 
 public class BallDeath : MonoBehaviour
 {
-    [SerializeField] private VisualEffect whiteExplosion;
-    [SerializeField] private VisualEffect blackExplosion;
-    [SerializeField] private VisualEffect whiteImplosion;
-    [SerializeField] private VisualEffect blackImplosion;
+    [SerializeField] private BallVfx ballVfx;
     [SerializeField] private BallColorManager ballColorManager;
     [SerializeField] private BallAnimation ballAnimation;
 
@@ -19,10 +16,7 @@ public class BallDeath : MonoBehaviour
 
     public void ToggleBallOn()
     {
-        if (ballColorManager.CurrentBallColor == BallColor.White)
-            StartCoroutine(SpawnBallModel(whiteImplosion));
-        else
-            StartCoroutine(SpawnBallModel(blackImplosion));
+        StartCoroutine(SpawnBallModel());
     }
 
     public void ToggleBallOff()
@@ -31,21 +25,23 @@ public class BallDeath : MonoBehaviour
         ballRenderer.enabled = false;
 
         if (ballColorManager.CurrentBallColor == BallColor.White)
-            whiteExplosion.Play();
+            ballVfx.PlayWhiteExplosion();
         else
-            blackExplosion.Play();
+            ballVfx.PlayBlackExplosion();
     }
 
 
-    private IEnumerator SpawnBallModel(VisualEffect visualEffect)
+    private IEnumerator SpawnBallModel()
     {
         ballCollider.enabled = false;
         ballRenderer.enabled = false;
 
-        visualEffect.Play();
-        yield return new WaitForSeconds(2f);
-        visualEffect.Stop();
-        yield return new WaitForSeconds(0.5f);
+        if (ballColorManager.CurrentBallColor == BallColor.White)
+            yield return StartCoroutine(ballVfx.PlayWhiteImplosion(2f));
+        else
+            yield return StartCoroutine(ballVfx.PlayBlackImplosion(2f));
+
+        yield return new WaitForSeconds(0.75f);
 
         ballCollider.enabled = true;
         ballRenderer.enabled = true;

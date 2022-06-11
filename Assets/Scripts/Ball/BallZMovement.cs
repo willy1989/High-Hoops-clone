@@ -10,11 +10,17 @@ public class BallZMovement : MonoBehaviour
 
     [HideInInspector] public bool CanMove;
 
-
+    private bool doubleSpeedOn = false;
 
     private void Awake()
     {
         CanMove = true;
+    }
+
+    private void Start()
+    {
+        AutoPilotManager.Instance.AutoPilotStartEvent += ToggleDoubleSpeed;
+        AutoPilotManager.Instance.AutoPilotEndEvent += ToggleDoubleSpeed;
     }
 
     private void Update()
@@ -27,11 +33,21 @@ public class BallZMovement : MonoBehaviour
         if (CanMove == false)
             return;
 
-        transform.position += Vector3.forward * zMovementSpeed * Time.deltaTime;
+        if(doubleSpeedOn == false)
+            transform.position += Vector3.forward * zMovementSpeed * Time.deltaTime;
+        else
+            transform.position += Vector3.forward * zMovementSpeed * 2f * Time.deltaTime;
+
+    }
+
+    private void ToggleDoubleSpeed()
+    {
+        doubleSpeedOn = !doubleSpeedOn;
     }
 
     public void Reset()
     {
         transform.position = ballSpawnPosition.position;
+        doubleSpeedOn = false;
     }
 }

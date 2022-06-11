@@ -6,6 +6,8 @@ public class BallNavigationWaypointManager : MonoBehaviour
 {
     [SerializeField] private BallAnimation ballAnimation;
 
+    [SerializeField] private BallVfx ballVfx;
+
     private BallNavigationWaypoint previousTarget;
 
     private BallNavigationWaypoint nextTarget;
@@ -26,6 +28,8 @@ public class BallNavigationWaypointManager : MonoBehaviour
             bounceBlock.DisableBlockCollider();
 
             ballAnimation.BounceBallAnimation();
+
+            ballVfx.PlayDustPoof();
         }
 
         else if(other.CompareTag(Constants.ColorWall_Tag))
@@ -34,7 +38,10 @@ public class BallNavigationWaypointManager : MonoBehaviour
 
             if (colorwall == null)
                 return;
+
             nextTarget = colorwall.NextTarget;
+
+            other.gameObject.SetActive(false);
         }
     }
 

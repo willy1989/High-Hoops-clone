@@ -18,6 +18,7 @@ public class GameLoopManager : Singleton<GameLoopManager>
     [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
     [SerializeField] private BlocksPositionManager blocksPositionManager;
     [SerializeField] private CameraManager cameraManager;
+    [SerializeField] private BallVfx ballVfx;
 
     protected override void Awake()
     {
@@ -64,6 +65,8 @@ public class GameLoopManager : Singleton<GameLoopManager>
         cameraManager.Reset();
 
         AutoPilotManager.Instance.Reset();
+
+        ballVfx.Reset();
 
         dragInput.ListenToFirstInput();
     }

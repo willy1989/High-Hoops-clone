@@ -15,4 +15,7 @@ public class ColorWall : MonoBehaviour
     [SerializeField] private BallNavigationWaypoint nextTarget;
 
     public BallNavigationWaypoint NextTarget => nextTarget;
+
+
+    
 }
