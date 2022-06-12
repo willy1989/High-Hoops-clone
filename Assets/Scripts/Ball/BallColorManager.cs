@@ -11,11 +11,7 @@ public class BallColorManager : MonoBehaviour
 
     [SerializeField] private BallDeath ballDeath;
 
-    [SerializeField] private Renderer Ballrenderer;
-
-    [SerializeField] private Material whiteMaterial;
-
-    [SerializeField] private Material blackMaterial;
+    [SerializeField] private BallAnimation ballAnimation; 
 
     public Action LoseEvent;
 
@@ -52,18 +48,18 @@ public class BallColorManager : MonoBehaviour
 
         if (currentBallColor == BallColor.White)
         {
-            Ballrenderer.material = whiteMaterial;
+            ballAnimation.ChangeColor(startBallColor: BallColor.Black, targetBallColor: BallColor.White);
         }
 
         else
         {
-            Ballrenderer.material = blackMaterial;
+            ballAnimation.ChangeColor(startBallColor: BallColor.White, targetBallColor: BallColor.Black);
         }
     }
 
     public void Reset()
     {
-        SetBallColor(ballColor: BallColor.Black);
+        currentBallColor = BallColor.Black;
     }
 }
 

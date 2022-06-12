@@ -10,17 +10,20 @@ public class BallYMovement : MonoBehaviour
 
     [HideInInspector] public bool CanMove;
 
+    private bool jumpInPlace;
+
+
     private float startYPosition;
 
     private void Awake()
     {
-        CanMove = true;
         startYPosition = transform.position.y;
     }
 
     private void Update()
     {
         MoveAlongFunction();
+        JumpInPlace();
     }
 
     private void MoveAlongFunction()
@@ -32,16 +35,46 @@ public class BallYMovement : MonoBehaviour
 
         BallNavigationWaypoint nextWaypoint = ballNavigationWaypointManager.NextTarget;
 
-        float t = (Mathf.Abs(previousWaypoint.transform.position.z - transform.position.z)) 
-                   / Mathf.Abs(nextWaypoint.transform.position.z - previousWaypoint.transform.position.z);
+        float t = (Mathf.Abs(previousWaypoint.transform.position.z - transform.position.z))
+                               / Mathf.Abs(nextWaypoint.transform.position.z - previousWaypoint.transform.position.z);
 
         float newYPosition = nextWaypoint.BounceApex * yMovementFunction.Evaluate(t);
 
         transform.position = new Vector3(transform.position.x, newYPosition, transform.position.z);
     }
 
+    public IEnumerator JumpInPlace()
+    {
+        jumpInPlace = true;
+
+        float elapsedTime = 0f;
+
+        float t;
+
+        while(jumpInPlace == true)
+        {
+            t = elapsedTime % 1f;
+
+            float newYPosition = yMovementFunction.Evaluate(t) * 5f;
+
+            transform.position = new Vector3(transform.position.x, newYPosition, transform.position.z);
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        } 
+    }
+
+
+    public void StartJumpInPlace()
+    {
+        StartCoroutine(JumpInPlace());
+    }
+
+
     public void Reset()
     {
+        jumpInPlace = false;
         transform.position = new Vector3(transform.position.x, startYPosition, transform.position.z);
     }
 }

@@ -26,5 +26,6 @@ public static class Constants
     #region Cinemachine triggers
     public const string StartCamera_CameraState = "StartCamera";
     public const string FollowCamera_CameraState = "FollowCamera";
+    public const string Rotate_CameraState = "RotateCamera";
     #endregion
 }

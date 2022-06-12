@@ -17,6 +17,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private Text Oletter;
 
     [SerializeField] private RawImage autoPilotDurationBar;
+    [SerializeField] private RawImage autoPilotDurationBarBackGround;
 
     private Dictionary<AutoLetter, Text> autoLetterDictionnary = new Dictionary<AutoLetter, Text>();
 
@@ -76,6 +77,8 @@ public class UIManager : Singleton<UIManager>
     {
         autoPilotDurationBar.enabled = true;
 
+        autoPilotDurationBarBackGround.enabled = true;
+
         float duration = AutoPilotManager.Instance.AutoPilotDuration;
 
         float elapsedTime = 0;
@@ -98,9 +101,10 @@ public class UIManager : Singleton<UIManager>
         autoPilotDurationBar.rectTransform.sizeDelta = new Vector2(startWidth, autoPilotDurationBar.rectTransform.sizeDelta.y);
 
         autoPilotDurationBar.enabled = false;
+        autoPilotDurationBarBackGround.enabled = false;
     }
 
-    private void ResetAllAutoLetters()
+    public void ResetAllAutoLetters()
     {
         foreach (KeyValuePair<AutoLetter, Text> item in autoLetterDictionnary)
         {
@@ -115,5 +119,6 @@ public class UIManager : Singleton<UIManager>
         ToggleStartScreen(true);
         ResetAllAutoLetters();
         autoPilotDurationBar.enabled = false;
+        autoPilotDurationBarBackGround.enabled = false;
     }
 }

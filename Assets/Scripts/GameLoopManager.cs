@@ -12,12 +12,14 @@ public class GameLoopManager : Singleton<GameLoopManager>
     [SerializeField] private LevelLoader levelLoader;
 
     [SerializeField] private DragInput dragInput;
-    private EndArea endArea;
     [SerializeField] private BallDeath ballDeath;
     [SerializeField] private BallColorManager ballColorManager;
     [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
+    [SerializeField] private BallAnimation ballAnimation;
     [SerializeField] private BlocksPositionManager blocksPositionManager;
     [SerializeField] private CameraManager cameraManager;
+    [SerializeField] private OrbitalCameraRig orbitalCameraRig;
+    
     [SerializeField] private BallVfx ballVfx;
 
     protected override void Awake()
@@ -52,17 +54,17 @@ public class GameLoopManager : Singleton<GameLoopManager>
         ballZMovement.Reset();
         ballColorManager.Reset();
         ballDeath.Reset();
-        
-        ballNavigationWaypointManager.SetNextTarget(levelLoader.CurrentLevel.FirstWayPoint, levelLoader.CurrentLevel.SecondWayPoint);
+        ballAnimation.Reset();
 
-        endArea = levelLoader.CurrentLevel.EndArea;
-        endArea.ReachLevelEndEvent += GameWinPhase;
+        ballNavigationWaypointManager.SetNextTarget(levelLoader.CurrentLevel.FirstWayPoint, levelLoader.CurrentLevel.SecondWayPoint);
 
         blocksPositionManager.SetNextBlockPositionSetterGroups(levelLoader.CurrentLevel.BlockPositionSetterGroups);
 
         blocksPositionManager.Reset();
 
         cameraManager.Reset();
+
+        orbitalCameraRig.Reset();
 
         AutoPilotManager.Instance.Reset();
 
@@ -71,7 +73,7 @@ public class GameLoopManager : Singleton<GameLoopManager>
         dragInput.ListenToFirstInput();
     }
 
-    public void GameStartPhase()
+    private void GameStartPhase()
     {
         ballZMovement.CanMove = true;
         ballXMovement.CanMove = true;
@@ -88,12 +90,21 @@ public class GameLoopManager : Singleton<GameLoopManager>
         ballXMovement.CanMove = false;
         ballYMovement.CanMove = false;
 
+        ballYMovement.StartJumpInPlace();
+
         levelLoader.IncrementLevelIndex();
 
+        cameraManager.SwitchToRotateAroundCamera();
+
+        orbitalCameraRig.ToggleRotation();
+
+
+
         UIManager.Instance.ToggleWinScreen(true);
+        UIManager.Instance.ResetAllAutoLetters();
     }
 
-    public void GameLosePhase()
+    private void GameLosePhase()
     {
         ballZMovement.CanMove = false;
         ballXMovement.CanMove = false;

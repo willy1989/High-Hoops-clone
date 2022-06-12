@@ -16,10 +16,23 @@ public class BallNavigationWaypointManager : MonoBehaviour
 
     public BallNavigationWaypoint NextTarget => nextTarget;
 
+    private bool touchedEndZoneOnce = false;
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(Constants.BouceBlock_Tag))
+        if (other.CompareTag(Constants.LevelEnd_Tag))
+        {
+            ballAnimation.BounceAnimation();
+
+            if(touchedEndZoneOnce == false)
+            {
+                GameLoopManager.Instance.GameWinPhase();
+                touchedEndZoneOnce = true;
+            }
+        }
+
+        else if (other.CompareTag(Constants.BouceBlock_Tag))
         {
             BallNavigationWaypoint bounceBlock = other.GetComponent<BallNavigationWaypoint>();
 
@@ -27,12 +40,12 @@ public class BallNavigationWaypointManager : MonoBehaviour
 
             bounceBlock.DisableBlockCollider();
 
-            ballAnimation.BounceBallAnimation();
+            ballAnimation.BounceAnimation();
 
             ballVfx.PlayDustPoof();
         }
 
-        else if(other.CompareTag(Constants.ColorWall_Tag))
+        else if (other.CompareTag(Constants.ColorWall_Tag))
         {
             ColorWall colorwall = other.GetComponent<ColorWall>();
 
@@ -55,5 +68,6 @@ public class BallNavigationWaypointManager : MonoBehaviour
     {
         previousTarget = previousWaypoint;
         nextTarget = nextWaypoint;
+        touchedEndZoneOnce = false;
     }
 }
