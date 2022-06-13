@@ -23,7 +23,9 @@ public class BlockPositionSetter : MonoBehaviour
             animator.enabled = false;
 
         block.transform.position = startPosition.position;
-        blockRenderer.enabled = false;
+
+        if(blockRenderer != null)
+            blockRenderer.enabled = false;
     }
 
     public void MoveIntoPosition()

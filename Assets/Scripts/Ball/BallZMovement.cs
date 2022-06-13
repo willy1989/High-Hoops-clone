@@ -36,7 +36,7 @@ public class BallZMovement : MonoBehaviour
         if(doubleSpeedOn == false)
             transform.position += Vector3.forward * zMovementSpeed * Time.deltaTime;
         else
-            transform.position += Vector3.forward * zMovementSpeed * 2f * Time.deltaTime;
+            transform.position += Vector3.forward * zMovementSpeed * 1.5f * Time.deltaTime;
 
     }
 

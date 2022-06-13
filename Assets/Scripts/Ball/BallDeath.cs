@@ -24,7 +24,7 @@ public class BallDeath : MonoBehaviour
         ballCollider.enabled = false;
         ballRenderer.enabled = false;
 
-        if (ballColorManager.CurrentBallColor == BallColor.White)
+        if (ballColorManager.CurrentBallColor == BallColor.Blue)
             ballVfx.PlayWhiteExplosion();
         else
             ballVfx.PlayBlackExplosion();
@@ -36,7 +36,7 @@ public class BallDeath : MonoBehaviour
         ballCollider.enabled = false;
         ballRenderer.enabled = false;
 
-        if (ballColorManager.CurrentBallColor == BallColor.White)
+        if (ballColorManager.CurrentBallColor == BallColor.Blue)
             yield return StartCoroutine(ballVfx.PlayWhiteImplosion(2.5f));
         else
             yield return StartCoroutine(ballVfx.PlayBlackImplosion(2.5f));

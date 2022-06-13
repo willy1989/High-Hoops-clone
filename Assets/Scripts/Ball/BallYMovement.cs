@@ -54,7 +54,7 @@ public class BallYMovement : MonoBehaviour
         {
             t = elapsedTime % 1f;
 
-            float newYPosition = yMovementFunction.Evaluate(t) * 5f;
+            float newYPosition = yMovementFunction.Evaluate(t) * 3f;
 
             transform.position = new Vector3(transform.position.x, newYPosition, transform.position.z);
 

@@ -46,14 +46,14 @@ public class BallColorManager : MonoBehaviour
     {
         currentBallColor = ballColor;
 
-        if (currentBallColor == BallColor.White)
+        if (currentBallColor == BallColor.Blue)
         {
-            ballAnimation.ChangeColor(startBallColor: BallColor.Red, targetBallColor: BallColor.White);
+            ballAnimation.ChangeColor(startBallColor: BallColor.Red, targetBallColor: BallColor.Blue);
         }
 
         else
         {
-            ballAnimation.ChangeColor(startBallColor: BallColor.White, targetBallColor: BallColor.Red);
+            ballAnimation.ChangeColor(startBallColor: BallColor.Blue, targetBallColor: BallColor.Red);
         }
     }
 
@@ -67,5 +67,5 @@ public class BallColorManager : MonoBehaviour
 public enum BallColor
 {
     Red,
-    White
+    Blue
 }

@@ -16,7 +16,7 @@ public class BallAnimation : MonoBehaviour
     private Dictionary<BallColor, float> colorDictionary = new Dictionary<BallColor, float>()
     {
         {BallColor.Red, -3f },
-        {BallColor.White, 3f }
+        {BallColor.Blue, 3f }
     };
 
     private void Awake()
