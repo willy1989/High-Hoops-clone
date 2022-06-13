@@ -367,7 +367,7 @@ MonoBehaviour:
   hoopAnimator: {fileID: 3973190279394046185}
   hoopAutoLetterAnimator: {fileID: 7543376659330990152}
   renderer: {fileID: 3973190279394046164}
-  disolveDuration: 3
+  disolveDuration: 2
   animationCurve:
     serializedVersion: 2
     m_Curve:

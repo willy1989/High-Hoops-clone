@@ -24,24 +24,31 @@ public class BallNavigationWaypointManager : MonoBehaviour
         if (other.CompareTag(Constants.LevelEnd_Tag))
         {
             ballAnimation.BounceAnimation();
+            SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.Jump);
             ballVfx.PlayDustPoof();
 
             if (touchedEndZoneOnce == false)
             {
                 GameLoopManager.Instance.GameWinPhase();
+                SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.Victory);
                 touchedEndZoneOnce = true;
             }
         }
 
         else if (other.CompareTag(Constants.BouceBlock_Tag))
         {
-            BallNavigationWaypoint bounceBlock = other.GetComponent<BallNavigationWaypoint>();
+            BallNavigationWaypoint waypoint = other.GetComponent<BallNavigationWaypoint>();
 
-            SetNextTarget(bounceBlock);
+            if (waypoint == null)
+                return;
 
-            bounceBlock.DisableBlockCollider();
+            SetNextTarget(waypoint);
+
+            waypoint.DisableBlockCollider();
 
             ballAnimation.BounceAnimation();
+
+            SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.Jump);
 
             ballVfx.PlayDustPoof();
         }

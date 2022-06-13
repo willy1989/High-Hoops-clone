@@ -27,6 +27,8 @@ public class AutoPilotManager : Singleton<AutoPilotManager>
     {
         hoopsCount++;
 
+        SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.HitHoopCenter);
+
         if (hoopsCount >= grabbedLetterThreshold)
         {
             StartAutoPilot();

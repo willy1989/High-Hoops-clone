@@ -24,6 +24,8 @@ public class BallDeath : MonoBehaviour
         ballCollider.enabled = false;
         ballRenderer.enabled = false;
 
+        SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.BallDeath);
+
         if (ballColorManager.CurrentBallColor == BallColor.Blue)
             ballVfx.PlayWhiteExplosion();
         else
@@ -45,6 +47,8 @@ public class BallDeath : MonoBehaviour
 
         ballCollider.enabled = true;
         ballRenderer.enabled = true;
+
+        SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.BallSpawn);
 
         ballAnimation.SpawnBallAnimation();
     }
