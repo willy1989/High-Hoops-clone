@@ -23,7 +23,6 @@ public class BallYMovement : MonoBehaviour
     private void Update()
     {
         MoveAlongFunction();
-        JumpInPlace();
     }
 
     private void MoveAlongFunction()

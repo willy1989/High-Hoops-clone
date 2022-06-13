@@ -71,7 +71,7 @@
     <Compile Include="Assets\Scripts\Block\Block positioning\BlocksPositionManager.cs" />
     <Compile Include="Assets\Scripts\Ball\BallZMovement.cs" />
     <Compile Include="Assets\Scripts\Hoops\HoopAnimation.cs" />
-    <Compile Include="Assets\Scripts\Block\BlackWhiteBlock.cs" />
+    <Compile Include="Assets\Scripts\Block\ColorBlock.cs" />
     <Compile Include="Assets\Scripts\Block\Block positioning\BlockPositionSetter.cs" />
     <Compile Include="Assets\Scripts\Block\BlockAnimation.cs" />
     <Compile Include="Assets\Scripts\Ball\BallNavigationWaypoint.cs" />
@@ -81,12 +81,12 @@
     <Compile Include="Assets\Scripts\Hoops\HoopVfx.cs" />
     <Compile Include="Assets\Scripts\Ball\AutoPilotManager.cs" />
     <Compile Include="Assets\Scripts\Ball\BallVfx.cs" />
+    <Compile Include="Assets\Scripts\Camera\OrbitalCameraRig.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
     <Compile Include="Assets\Scripts\GameLoopManager.cs" />
     <Compile Include="Assets\Scripts\Block\MovingBlock.cs" />
     <Compile Include="Assets\Scripts\Level.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
-    <Compile Include="Assets\Scripts\Camera\OrbitalCameraRig.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

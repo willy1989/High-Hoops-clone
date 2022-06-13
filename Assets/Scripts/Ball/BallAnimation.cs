@@ -15,7 +15,7 @@ public class BallAnimation : MonoBehaviour
 
     private Dictionary<BallColor, float> colorDictionary = new Dictionary<BallColor, float>()
     {
-        {BallColor.Black, -3f },
+        {BallColor.Red, -3f },
         {BallColor.White, 3f }
     };
 
@@ -65,7 +65,7 @@ public class BallAnimation : MonoBehaviour
 
     public void Reset()
     {
-        materialPropertyBlock.SetFloat("Origin_", colorDictionary[BallColor.Black]);
+        materialPropertyBlock.SetFloat("Origin_", colorDictionary[BallColor.Red]);
 
         renderer.SetPropertyBlock(materialPropertyBlock);
     }

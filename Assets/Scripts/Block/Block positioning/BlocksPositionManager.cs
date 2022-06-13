@@ -8,7 +8,7 @@ public class BlocksPositionManager : MonoBehaviour
 
     [SerializeField] private BallZMovement ballZMovement;
 
-    private int firstBlocksThreshold = 7;
+    private int firstBlocksThreshold = 6;
 
     private IEnumerator setBlockCoroutine;
 
@@ -31,13 +31,13 @@ public class BlocksPositionManager : MonoBehaviour
 
             blockIndex++;
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
     private IEnumerator SetRestBlocksIntoPosition()
     {
-        float distanceBetweenBlocks = 4;
+        float distanceBetweenBlocks = 6;
 
         int blockIndex = firstBlocksThreshold;
 
@@ -50,7 +50,7 @@ public class BlocksPositionManager : MonoBehaviour
                 blockPositionSetterGroups[blockIndex].SetBlocksIntoPosition();
 
                 blockIndex++;
-                distanceBetweenBlocks += 4;
+                distanceBetweenBlocks += 6;
             }
 
             yield return null;

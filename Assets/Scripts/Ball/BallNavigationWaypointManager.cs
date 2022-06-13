@@ -24,8 +24,9 @@ public class BallNavigationWaypointManager : MonoBehaviour
         if (other.CompareTag(Constants.LevelEnd_Tag))
         {
             ballAnimation.BounceAnimation();
+            ballVfx.PlayDustPoof();
 
-            if(touchedEndZoneOnce == false)
+            if (touchedEndZoneOnce == false)
             {
                 GameLoopManager.Instance.GameWinPhase();
                 touchedEndZoneOnce = true;

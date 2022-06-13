@@ -19,7 +19,7 @@ public class BallColorManager : MonoBehaviour
     {
         if(other.CompareTag(Constants.BouceBlock_Tag))
         {
-            BlackWhiteBlock blackWhiteBlock = other.GetComponent<BlackWhiteBlock>();
+            ColorBlock blackWhiteBlock = other.GetComponent<ColorBlock>();
 
             if (blackWhiteBlock == null)
                 return;
@@ -48,24 +48,24 @@ public class BallColorManager : MonoBehaviour
 
         if (currentBallColor == BallColor.White)
         {
-            ballAnimation.ChangeColor(startBallColor: BallColor.Black, targetBallColor: BallColor.White);
+            ballAnimation.ChangeColor(startBallColor: BallColor.Red, targetBallColor: BallColor.White);
         }
 
         else
         {
-            ballAnimation.ChangeColor(startBallColor: BallColor.White, targetBallColor: BallColor.Black);
+            ballAnimation.ChangeColor(startBallColor: BallColor.White, targetBallColor: BallColor.Red);
         }
     }
 
     public void Reset()
     {
-        currentBallColor = BallColor.Black;
+        currentBallColor = BallColor.Red;
     }
 }
 
 
 public enum BallColor
 {
-    Black,
+    Red,
     White
 }

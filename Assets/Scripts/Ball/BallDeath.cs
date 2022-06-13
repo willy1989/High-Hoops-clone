@@ -37,11 +37,11 @@ public class BallDeath : MonoBehaviour
         ballRenderer.enabled = false;
 
         if (ballColorManager.CurrentBallColor == BallColor.White)
-            yield return StartCoroutine(ballVfx.PlayWhiteImplosion(2f));
+            yield return StartCoroutine(ballVfx.PlayWhiteImplosion(2.5f));
         else
-            yield return StartCoroutine(ballVfx.PlayBlackImplosion(2f));
+            yield return StartCoroutine(ballVfx.PlayBlackImplosion(2.5f));
 
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
 
         ballCollider.enabled = true;
         ballRenderer.enabled = true;

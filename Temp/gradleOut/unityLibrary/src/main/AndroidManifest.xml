@@ -14,7 +14,7 @@
     <meta-data android:name="unity.splash-enable" android:value="True" />
     <meta-data android:name="unity.allow-resizable-window" android:value="False" />
     <meta-data android:name="notch.config" android:value="portrait|landscape" />
-    <meta-data android:name="unity.build-id" android:value="67fc25f9-f8e8-4f7d-8c95-b0648922fd42" />
+    <meta-data android:name="unity.build-id" android:value="d54cce19-accc-4e24-a812-e92d70d97eab" />
     <receiver android:name="com.unity.androidnotifications.UnityNotificationManager" android:exported="true" />
     <receiver android:name="com.unity.androidnotifications.UnityNotificationRestartOnBootReceiver" android:enabled="false">
       <intent-filter>

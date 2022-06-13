@@ -9,7 +9,7 @@ public class DragInput : MonoBehaviour
 
     public Action FirstInputRegisteredEvent;
 
-    [Range(0f,3f)]
+    [Range(0f,5f)]
     [SerializeField] private float firstInputDelay;
 
     private void Update()

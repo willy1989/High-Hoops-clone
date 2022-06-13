@@ -43,11 +43,7 @@ public class BlockPositionSetter : MonoBehaviour
 
             Vector3 newPosition = startPosition.position + (endPosition.position - startPosition.position) * t;
 
-            //Vector3 newPosition = Vector3.Lerp(startPosition.position, endPosition.position, t);
-            //Quaternion newRotation = Quaternion.Lerp(startPosition.rotation, endPosition.rotation, t);
-
             block.transform.position = newPosition;
-            //block.transform.rotation = newRotation;
 
             elapsedTime += Time.deltaTime;
 
@@ -58,7 +54,5 @@ public class BlockPositionSetter : MonoBehaviour
 
         if (animator != null)
             animator.enabled = true;
-
-        //block.transform.rotation = endPosition.rotation;
     }
 }

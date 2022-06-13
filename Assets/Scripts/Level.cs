@@ -14,4 +14,9 @@ public class Level : MonoBehaviour
     public BallNavigationWaypoint SecondWayPoint => secondWayPoint;
 
     public BlockPositionSetterGroup[] BlockPositionSetterGroups => blockPositionSetterGroups;
+
+    private void Awake()
+    {
+        blockPositionSetterGroups = GetComponentsInChildren<BlockPositionSetterGroup>();
+    }
 }
