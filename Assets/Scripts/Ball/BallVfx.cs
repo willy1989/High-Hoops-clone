@@ -3,40 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class BallVfx : MonoBehaviour
+public class BallVfx : MonoBehaviour, IResetable
 {
-    [SerializeField] private VisualEffect whiteExplosion;
-    [SerializeField] private VisualEffect blackExplosion;
-    [SerializeField] private VisualEffect whiteImplosion;
-    [SerializeField] private VisualEffect blackImplosion;
+    [SerializeField] private VisualEffect blueExplosion;
+    [SerializeField] private VisualEffect redExplosion;
+    [SerializeField] private VisualEffect blueImplosion;
+    [SerializeField] private VisualEffect redImplosion;
     [SerializeField] private VisualEffect dustPoof;
 
     [SerializeField] private TrailRenderer trailRenderer;
+
+    private void Awake()
+    {
+        ResetState();
+    }
 
     private void Start()
     {
         AutoPilotManager.Instance.AutoPilotStartEvent += ToggleTrailRenderer;
         AutoPilotManager.Instance.AutoPilotEndEvent += ToggleTrailRenderer;
+        GameLoopManager.Instance.ResetGameEvent += ResetState;
     }
 
-    public void PlayWhiteExplosion()
+    public void PlayBlueExplosion()
     {
-        whiteExplosion.Play();
+        blueExplosion.Play();
     }
 
-    public void PlayBlackExplosion()
+    public void PlayRedExplosion()
     {
-        blackExplosion.Play();
+        redExplosion.Play();
     }
 
-    public IEnumerator PlayBlackImplosion(float duration)
+    public IEnumerator PlayRedImplosion(float duration)
     {
-        yield return StartCoroutine(PlayVfx(blackImplosion, duration));
+        yield return StartCoroutine(PlayVfx(redImplosion, duration));
     }
 
-    public IEnumerator PlayWhiteImplosion(float duration)
+    public IEnumerator PlayBlueImplosion(float duration)
     {
-        yield return StartCoroutine(PlayVfx(whiteImplosion, duration));
+        yield return StartCoroutine(PlayVfx(blueImplosion, duration));
     }
 
     private IEnumerator PlayVfx(VisualEffect visualEffect, float duration)
@@ -56,7 +62,7 @@ public class BallVfx : MonoBehaviour
         trailRenderer.enabled = !trailRenderer.enabled;
     }
 
-    public void Reset()
+    public void ResetState()
     {
         trailRenderer.enabled = false;
     }

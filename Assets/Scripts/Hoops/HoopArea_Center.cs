@@ -20,7 +20,6 @@ public class HoopArea_Center : HoopArea
     protected override void DoCollisionAction()
     {
         hoopArea_Side.DisableCollider();
-        Debug.Log("Player ball hit CENTER of hoop");
         hoopAnimation.DisolveHoopModel();
         hoopAnimation.ShakeHoopAnimation();
         hoopAnimation.RaiseAutoLetter();
@@ -29,7 +28,6 @@ public class HoopArea_Center : HoopArea
         AutoPilotManager.Instance.RegisterHoop();
     }
 }
-
 
 public enum AutoLetter
 {

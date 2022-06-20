@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class BallDeath : MonoBehaviour
+public class BallDeath : MonoBehaviour, IResetable
 {
     [SerializeField] private BallVfx ballVfx;
     [SerializeField] private BallColorManager ballColorManager;
@@ -13,6 +13,15 @@ public class BallDeath : MonoBehaviour
     [SerializeField] private Collider ballCollider;
 
     [SerializeField] private Renderer ballRenderer;
+    private void Awake()
+    {
+        ResetState();
+    }
+
+    private void Start()
+    {
+        GameLoopManager.Instance.ResetGameEvent += ResetState;
+    }
 
     public void ToggleBallOn()
     {
@@ -27,11 +36,10 @@ public class BallDeath : MonoBehaviour
         SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.BallDeath);
 
         if (ballColorManager.CurrentBallColor == BallColor.Blue)
-            ballVfx.PlayWhiteExplosion();
+            ballVfx.PlayBlueExplosion();
         else
-            ballVfx.PlayBlackExplosion();
+            ballVfx.PlayRedExplosion();
     }
-
 
     private IEnumerator SpawnBallModel()
     {
@@ -39,9 +47,9 @@ public class BallDeath : MonoBehaviour
         ballRenderer.enabled = false;
 
         if (ballColorManager.CurrentBallColor == BallColor.Blue)
-            yield return StartCoroutine(ballVfx.PlayWhiteImplosion(2.5f));
+            yield return StartCoroutine(ballVfx.PlayBlueImplosion(2.5f));
         else
-            yield return StartCoroutine(ballVfx.PlayBlackImplosion(2.5f));
+            yield return StartCoroutine(ballVfx.PlayRedImplosion(2.5f));
 
         yield return new WaitForSeconds(0.5f);
 
@@ -53,7 +61,7 @@ public class BallDeath : MonoBehaviour
         ballAnimation.SpawnBallAnimation();
     }
 
-    public void Reset()
+    public void ResetState()
     {
         ToggleBallOn();
     }

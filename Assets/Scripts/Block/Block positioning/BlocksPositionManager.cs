@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlocksPositionManager : MonoBehaviour
+public class BlocksPositionManager : MonoBehaviour, IResetable
 {
     [SerializeField] private BlockPositionSetterGroup[] blockPositionSetterGroups;
 
@@ -12,8 +12,21 @@ public class BlocksPositionManager : MonoBehaviour
 
     private IEnumerator setBlockCoroutine;
 
+    private void Awake()
+    {
+        ResetState();
+    }
+
+    private void Start()
+    {
+        GameLoopManager.Instance.ResetGameEvent += ResetState;
+    }
+
     private void SetBlocksIntoPosition()
     {
+        if (blockPositionSetterGroups.Length == 0)
+            return;
+
         StartCoroutine(SetFirstBlocksIntoPosition());
 
         setBlockCoroutine = SetRestBlocksIntoPosition();
@@ -21,6 +34,7 @@ public class BlocksPositionManager : MonoBehaviour
         StartCoroutine(setBlockCoroutine);
     }
 
+    // The first few blocks are laid down before the player starts moving
     private IEnumerator SetFirstBlocksIntoPosition()
     {
         int blockIndex = 0;
@@ -35,6 +49,7 @@ public class BlocksPositionManager : MonoBehaviour
         }
     }
 
+    // The blocks are gradually laid in front of the player as he or she moves across the level.
     private IEnumerator SetRestBlocksIntoPosition()
     {
         float distanceBetweenBlocks = 6;
@@ -62,7 +77,7 @@ public class BlocksPositionManager : MonoBehaviour
         blockPositionSetterGroups = _blockPositionSetterGroups;
     }
 
-    public void Reset()
+    public void ResetState()
     {
         if (setBlockCoroutine != null)
         {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallAnimation : MonoBehaviour
+public class BallAnimation : MonoBehaviour, IResetable
 {
     [SerializeField] private Animator animator;
 
@@ -23,6 +23,12 @@ public class BallAnimation : MonoBehaviour
     {
         materialPropertyBlock = new MaterialPropertyBlock();
         renderer.GetPropertyBlock(materialPropertyBlock);
+        ResetState();
+    }
+
+    private void Start()
+    {
+        GameLoopManager.Instance.ResetGameEvent += ResetState;
     }
 
     public void SpawnBallAnimation()
@@ -53,7 +59,7 @@ public class BallAnimation : MonoBehaviour
         {
             t = Mathf.Lerp(startOrigin, targetOrigin, elapsedTime / changeColorDuration);
 
-            materialPropertyBlock.SetFloat("Origin_", t);
+            materialPropertyBlock.SetFloat(Constants.BallColorGradientOrigin_ShaderProperties, t);
 
             renderer.SetPropertyBlock(materialPropertyBlock);
 
@@ -63,9 +69,9 @@ public class BallAnimation : MonoBehaviour
         }
     }
 
-    public void Reset()
+    public void ResetState()
     {
-        materialPropertyBlock.SetFloat("Origin_", colorDictionary[BallColor.Red]);
+        materialPropertyBlock.SetFloat(Constants.BallColorGradientOrigin_ShaderProperties, colorDictionary[BallColor.Red]);
 
         renderer.SetPropertyBlock(materialPropertyBlock);
     }

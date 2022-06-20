@@ -28,4 +28,10 @@ public static class Constants
     public const string FollowCamera_CameraState = "FollowCamera";
     public const string Rotate_CameraState = "RotateCamera";
     #endregion
+
+    #region Shader properties
+    public const string BallColorGradientOrigin_ShaderProperties = "_Origin";
+    public const string HoopAlphaClip_ShaderProperties = "_AlphaClip";
+
+    #endregion
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : Singleton<UIManager>
+public class UIManager : Singleton<UIManager>, IResetable
 {
     [SerializeField] private GameObject startScreen;
     [SerializeField] private GameObject loseScreen;
@@ -30,6 +30,8 @@ public class UIManager : Singleton<UIManager>
         autoLetterDictionnary.Add(AutoLetter.U, Uletter);
         autoLetterDictionnary.Add(AutoLetter.T, Tletter);
         autoLetterDictionnary.Add(AutoLetter.O, Oletter);
+
+        ResetState();
     }
 
     private void Start()
@@ -37,6 +39,8 @@ public class UIManager : Singleton<UIManager>
         AutoPilotManager.Instance.AutoPilotEndEvent += ResetAllAutoLetters;
 
         AutoPilotManager.Instance.AutoPilotStartEvent += StartUpdateAutoPilotDurationBar;
+
+        GameLoopManager.Instance.ResetGameEvent += ResetState;
     }
 
     public void ToggleStartScreen(bool onOff)
@@ -112,7 +116,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void Reset()
+    public void ResetState()
     {
         ToggleLoseScreen(false);
         ToggleWinScreen(false);

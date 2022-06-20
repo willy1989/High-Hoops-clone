@@ -40,7 +40,7 @@ public class HoopAnimation : MonoBehaviour
         {
             t = animationCurve.Evaluate(elapsedTime / disolveDuration);
 
-            materialPropertyBlock.SetFloat("AlphaClip_", t);
+            materialPropertyBlock.SetFloat(Constants.HoopAlphaClip_ShaderProperties, t);
 
             renderer.SetPropertyBlock(materialPropertyBlock);
 
@@ -49,11 +49,8 @@ public class HoopAnimation : MonoBehaviour
             yield return null;
         }
 
-
-        materialPropertyBlock.SetFloat("AlphaClip_", 1f);
+        materialPropertyBlock.SetFloat(Constants.HoopAlphaClip_ShaderProperties, 1f);
         renderer.SetPropertyBlock(materialPropertyBlock);
-
-        //gameObject.SetActive(false);
     }
 
     public void SpinHoopAnimation()
@@ -70,6 +67,4 @@ public class HoopAnimation : MonoBehaviour
     {
         hoopAutoLetterAnimator.SetTrigger(Constants.BallCollision_AnimationTrigger);
     }
-
-
 }

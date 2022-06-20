@@ -3,9 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraManager : MonoBehaviour
+public class CameraManager : MonoBehaviour, IResetable
 {
     [SerializeField] private Animator cameraStateAnimator;
+
+    private void Awake()
+    {
+        ResetState();
+    }
+
+    private void Start()
+    {
+        GameLoopManager.Instance.ResetGameEvent += ResetState;
+    }
 
     private void SwitchToStartCamera()
     {
@@ -22,7 +32,7 @@ public class CameraManager : MonoBehaviour
         cameraStateAnimator.Play(Constants.Rotate_CameraState);
     }
 
-    public void Reset()
+    public void ResetState()
     {
         SwitchToStartCamera();
     }

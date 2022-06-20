@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.22f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\FrameRateSettings.cs" />
     <Compile Include="Assets\Scripts\Ball\BallXMovement.cs" />
     <Compile Include="Assets\Scripts\Ball\BallNavigationWaypointManager.cs" />
@@ -62,6 +65,7 @@
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\Ball\BallColorManager.cs" />
     <Compile Include="Assets\Scripts\Hoops\HoopArea.cs" />
+    <Compile Include="Assets\Scripts\IResetable.cs" />
     <Compile Include="Assets\Scripts\DragInput.cs" />
     <Compile Include="Assets\Scripts\ColorWallAnimation.cs" />
     <Compile Include="Assets\Scripts\Ball\BallAnimation.cs" />
@@ -80,6 +84,7 @@
     <Compile Include="Assets\Scripts\UIAnimation.cs" />
     <Compile Include="Assets\Scripts\Hoops\HoopVfx.cs" />
     <Compile Include="Assets\Scripts\Ball\AutoPilotManager.cs" />
+    <Compile Include="Assets\Scripts\SoundEffectPlayer.cs" />
     <Compile Include="Assets\Scripts\Ball\BallVfx.cs" />
     <Compile Include="Assets\Scripts\Camera\OrbitalCameraRig.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraManager.cs" />
@@ -87,7 +92,6 @@
     <Compile Include="Assets\Scripts\Block\MovingBlock.cs" />
     <Compile Include="Assets\Scripts\Level.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
-    <Compile Include="Assets\Scripts\SoundEffectPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

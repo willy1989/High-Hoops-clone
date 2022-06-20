@@ -484,7 +484,7 @@
     },
     "m_Name": "Origin",
     "m_DefaultReferenceName": "Vector1_170d4bd6fa8a4184b0473fb095ccfd5a",
-    "m_OverrideReferenceName": "Origin_",
+    "m_OverrideReferenceName": "_Origin",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

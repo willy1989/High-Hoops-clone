@@ -367,25 +367,25 @@ MonoBehaviour:
   hoopAnimator: {fileID: 3973190279394046185}
   hoopAutoLetterAnimator: {fileID: 7543376659330990152}
   renderer: {fileID: 3973190279394046164}
-  disolveDuration: 2
+  disolveDuration: 0.75
   animationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0

@@ -56,20 +56,20 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\NotificationSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\DrawableResourceData.cs" />
+    <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\NotificationStyles.cs" />
+    <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\NotificationSetting.cs" />
+    <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\iOSAuthorizationOption.cs" />
+    <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\NotificationSettingsManager.cs" />
+    <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\NotificationSettings.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\iOSNotificationPostProcessor.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\NotificationIconType.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\NotificationSettingsCollection.cs" />
-    <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\NotificationStyles.cs" />
-    <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\NotificationSetting.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\NotificationSettingsProvider.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\AssembyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\iOSPresentationOption.cs" />
-    <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\iOSAuthorizationOption.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\TextureAssetUtils.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\AndroidNotificationPostProcessor.cs" />
-    <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\NotificationSettingsManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Editor\Unity.Mobile.Notifications.Editor.asmdef" />
@@ -323,6 +323,9 @@
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.13.5\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.7.0\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>

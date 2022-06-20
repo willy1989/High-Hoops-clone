@@ -57,9 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Runtime\iOS\AuthorizationRequest.cs" />
-    <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Runtime\iOS\iOSNotificationCenter.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Runtime\iOS\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Runtime\iOS\iOSNotification.cs" />
+    <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Runtime\iOS\iOSNotificationCenter.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Runtime\iOS\iOSNotificationTriggers.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Runtime\iOS\iOSNotificationsWrapper.cs" />
     <Compile Include="Library\PackageCache\com.unity.mobile.notifications@1.4.2\Runtime\iOS\iOSNotificationSettings.cs" />
@@ -307,6 +307,9 @@
     </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.13.5\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.NRefactory">
+      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.7.0\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>

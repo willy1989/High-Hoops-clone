@@ -2,11 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrbitalCameraRig : MonoBehaviour
+public class OrbitalCameraRig : MonoBehaviour, IResetable
 {
     [SerializeField] private float rotationSpeed;
 
     private bool canRotate = false;
+
+
+    private void Awake()
+    {
+        ResetState();
+    }
+
+    private void Start()
+    {
+        GameLoopManager.Instance.ResetGameEvent += ResetState;
+    }
 
     private void Update()
     {
@@ -30,7 +41,7 @@ public class OrbitalCameraRig : MonoBehaviour
         canRotate = !canRotate;
     }
 
-    public void Reset()
+    public void ResetState()
     {
         canRotate = false;
         transform.rotation = Quaternion.Euler(Vector3.zero);

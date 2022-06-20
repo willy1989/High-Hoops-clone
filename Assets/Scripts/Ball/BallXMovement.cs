@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallXMovement : MonoBehaviour
+public class BallXMovement : MonoBehaviour, IResetable
 {
     [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
 
@@ -19,14 +19,13 @@ public class BallXMovement : MonoBehaviour
 
     [SerializeField] float rightBoundary;
 
-    [HideInInspector] public bool CanMove;
+    private bool canMove;
 
     [SerializeField] public bool AutoPilotOnOff;
 
-
-    private void Awake()
+    private void Start()
     {
-        CanMove = true;
+        GameLoopManager.Instance.ResetGameEvent += ResetState;
     }
 
     private void Update()
@@ -34,12 +33,14 @@ public class BallXMovement : MonoBehaviour
         if (AutoPilotOnOff == true)
             AutoPilotXAxisMovement();
 
-        else if(CanMove == true && dragInput.DragInputVector != Vector2.zero)
+        else if(canMove == true && dragInput.DragInputVector != Vector2.zero)
             MoveTarget();
 
         MoveBallTowardsTarget();
     }
 
+    // To make lateral movement smooth, we don't move the ball directly on the left axis.
+    // Instead we move a target, and then interpolate the ball's position to that of the target.
     private void MoveTarget()
     {
         Vector3 newPosition = xAxisTarget.position + Vector3.right * dragInput.DragInputVector.x * targetMovementSpeed * Time.deltaTime;
@@ -68,9 +69,15 @@ public class BallXMovement : MonoBehaviour
         xAxisTarget.position = new Vector3(newXposition, transform.position.y, transform.position.z);
     }
 
-    public void Reset()
+    public void ToggleMovement(bool onOff)
+    {
+        canMove = onOff;
+    }
+
+    public void ResetState()
     {
         xAxisTarget.localPosition = Vector3.zero;
         AutoPilotOnOff = false;
+        canMove = false;
     }
 }

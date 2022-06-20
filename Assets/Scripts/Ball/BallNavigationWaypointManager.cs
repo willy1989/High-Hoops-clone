@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class BallNavigationWaypointManager : MonoBehaviour
 
     private bool touchedEndZoneOnce = false;
 
+    public Action ballReachedEndEvent;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -29,7 +32,7 @@ public class BallNavigationWaypointManager : MonoBehaviour
 
             if (touchedEndZoneOnce == false)
             {
-                GameLoopManager.Instance.GameWinPhase();
+                ballReachedEndEvent?.Invoke();
                 SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.Victory);
                 touchedEndZoneOnce = true;
             }

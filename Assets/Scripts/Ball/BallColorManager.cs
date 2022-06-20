@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallColorManager : MonoBehaviour
+public class BallColorManager : MonoBehaviour, IResetable
 {
     [SerializeField] private BallColor currentBallColor;
 
@@ -11,23 +11,34 @@ public class BallColorManager : MonoBehaviour
 
     [SerializeField] private BallDeath ballDeath;
 
-    [SerializeField] private BallAnimation ballAnimation; 
+    [SerializeField] private BallAnimation ballAnimation;
 
-    public Action LoseEvent;
+    public Action ballCollisionOppositeColorEvent; 
+
+    private void Awake()
+    {
+        ResetState();
+    }
+
+    private void Start()
+    {
+        GameLoopManager.Instance.ResetGameEvent += ResetState;
+        ResetState();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag(Constants.BouceBlock_Tag))
         {
-            ColorBlock blackWhiteBlock = other.GetComponent<ColorBlock>();
+            ColorBlock colorBlock = other.GetComponent<ColorBlock>();
 
-            if (blackWhiteBlock == null)
+            if (colorBlock == null)
                 return;
 
-            if (currentBallColor != blackWhiteBlock.BallColor)
+            if (currentBallColor != colorBlock.BallColor)
             {
                 ballDeath.ToggleBallOff();
-                LoseEvent?.Invoke();
+                ballCollisionOppositeColorEvent?.Invoke();
             }
         }
 
@@ -57,7 +68,7 @@ public class BallColorManager : MonoBehaviour
         }
     }
 
-    public void Reset()
+    public void ResetState()
     {
         currentBallColor = BallColor.Red;
     }

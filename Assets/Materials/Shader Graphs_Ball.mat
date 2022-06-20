@@ -36,6 +36,7 @@ Material:
     - Boolean_6c7bb42149fc4fcca1044bed6cc0fb5e: 0
     - GlowOnOff_: 0
     - Origin_: -3
+    - _Origin: 0
     m_Colors:
     - GlowColor_: {r: 1, g: 0.8624264, b: 0, a: 0}
   m_BuildTextureStacks: []

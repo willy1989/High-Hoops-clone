@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoPilotManager : Singleton<AutoPilotManager>
+public class AutoPilotManager : Singleton<AutoPilotManager>, IResetable
 {
     [SerializeField] private int grabbedLetterThreshold;
 
@@ -21,6 +21,12 @@ public class AutoPilotManager : Singleton<AutoPilotManager>
     protected override void Awake()
     {
         base.Awake();
+        ResetState();
+    }
+
+    private void Start()
+    {
+        GameLoopManager.Instance.ResetGameEvent += ResetState;
     }
 
     public void RegisterHoop()
@@ -57,7 +63,7 @@ public class AutoPilotManager : Singleton<AutoPilotManager>
         AutoPilotEndEvent?.Invoke();
     }
 
-    public void Reset()
+    public void ResetState()
     {
         hoopsCount = 0;
     }

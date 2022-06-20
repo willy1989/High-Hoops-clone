@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallYMovement : MonoBehaviour
+public class BallYMovement : MonoBehaviour, IResetable
 {
     [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
 
     [SerializeField] private AnimationCurve yMovementFunction;
 
-    [HideInInspector] public bool CanMove;
+    [Range(0.5f, 5f)]
+    [SerializeField] private float jumpInPlaceHeight;
+
+    [Range(0.5f, 5f)]
+    [SerializeField] private float jumpInPlaceDuration;
+
+    private bool canMove;
 
     private bool jumpInPlace;
 
@@ -18,16 +24,22 @@ public class BallYMovement : MonoBehaviour
     private void Awake()
     {
         startYPosition = transform.position.y;
+        ResetState();
+    }
+
+    private void Start()
+    {
+        GameLoopManager.Instance.ResetGameEvent += ResetState;
     }
 
     private void Update()
     {
-        MoveAlongFunction();
+        MoveAlongJumpFunction();
     }
 
-    private void MoveAlongFunction()
+    private void MoveAlongJumpFunction()
     {
-        if (CanMove == false)
+        if (canMove == false)
             return;
 
         BallNavigationWaypoint previousWaypoint = ballNavigationWaypointManager.PreviousTarget;
@@ -52,9 +64,9 @@ public class BallYMovement : MonoBehaviour
 
         while(jumpInPlace == true)
         {
-            t = elapsedTime % 1f;
+            t = elapsedTime % jumpInPlaceDuration;
 
-            float newYPosition = yMovementFunction.Evaluate(t) * 3f;
+            float newYPosition = yMovementFunction.Evaluate(t) * jumpInPlaceHeight;
 
             transform.position = new Vector3(transform.position.x, newYPosition, transform.position.z);
 
@@ -64,16 +76,20 @@ public class BallYMovement : MonoBehaviour
         } 
     }
 
-
     public void StartJumpInPlace()
     {
         StartCoroutine(JumpInPlace());
     }
 
+    public void ToggleMovement(bool onOff)
+    {
+        canMove = onOff;
+    }
 
-    public void Reset()
+    public void ResetState()
     {
         jumpInPlace = false;
+        canMove = false;
         transform.position = new Vector3(transform.position.x, startYPosition, transform.position.z);
     }
 }

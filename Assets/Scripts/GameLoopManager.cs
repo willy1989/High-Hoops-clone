@@ -1,7 +1,8 @@
+using System; 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameLoopManager : Singleton<GameLoopManager>
 {
@@ -12,83 +13,65 @@ public class GameLoopManager : Singleton<GameLoopManager>
     [SerializeField] private LevelLoader levelLoader;
 
     [SerializeField] private DragInput dragInput;
-    [SerializeField] private BallDeath ballDeath;
-    [SerializeField] private BallColorManager ballColorManager;
     [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
-    [SerializeField] private BallAnimation ballAnimation;
+    [SerializeField] private BallColorManager ballColorManager;
     [SerializeField] private BlocksPositionManager blocksPositionManager;
     [SerializeField] private CameraManager cameraManager;
     [SerializeField] private OrbitalCameraRig orbitalCameraRig;
-    
-    [SerializeField] private BallVfx ballVfx;
+
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button nextLevelButton;
+
+    public Action ResetGameEvent;
 
     protected override void Awake()
     {
         base.Awake();
 
+        ballColorManager.ballCollisionOppositeColorEvent += GameLosePhase;
+        ballNavigationWaypointManager.ballReachedEndEvent += GameWinPhase;
         dragInput.FirstInputRegisteredEvent += GameStartPhase;
-        ballColorManager.LoseEvent += GameLosePhase;
+
+        restartButton.onClick.RemoveAllListeners();
+        restartButton.onClick.AddListener(ResetGamePhase);
+        nextLevelButton.onClick.RemoveAllListeners();
+        nextLevelButton.onClick.AddListener(ResetGamePhase);
     }
 
     private void Start()
     {
-        ballZMovement.CanMove = false;
-        ballXMovement.CanMove = false;
-        ballYMovement.CanMove = false;
-
         ResetGamePhase();
     }
 
-    public void ResetGamePhase()
+    private void ResetGamePhase()
     {
-        ballZMovement.CanMove = false;
-        ballXMovement.CanMove = false;
-        ballYMovement.CanMove = false;
-
-        UIManager.Instance.Reset();
-
         levelLoader.LoadLevel();
-
-        ballXMovement.Reset();
-        ballYMovement.Reset();
-        ballZMovement.Reset();
-        ballColorManager.Reset();
-        ballDeath.Reset();
-        ballAnimation.Reset();
 
         ballNavigationWaypointManager.SetNextTarget(levelLoader.CurrentLevel.FirstWayPoint, levelLoader.CurrentLevel.SecondWayPoint);
 
         blocksPositionManager.SetNextBlockPositionSetterGroups(levelLoader.CurrentLevel.BlockPositionSetterGroups);
 
-        blocksPositionManager.Reset();
-
-        cameraManager.Reset();
-
-        orbitalCameraRig.Reset();
-
-        AutoPilotManager.Instance.Reset();
-
-        ballVfx.Reset();
+        ResetGameEvent?.Invoke();
 
         dragInput.ListenToFirstInput();
     }
 
     private void GameStartPhase()
     {
-        ballZMovement.CanMove = true;
-        ballXMovement.CanMove = true;
-        ballYMovement.CanMove = true;
+        ballZMovement.ToggleMovement(onOff: true);
+        ballXMovement.ToggleMovement(onOff: true);
+        ballYMovement.ToggleMovement(onOff: true);
 
         cameraManager.SwitchToFollowCamera();
 
         UIManager.Instance.ToggleStartScreen(false);
     }
 
-    public void GameWinPhase()
+    private void GameWinPhase()
     {
-        ballZMovement.CanMove = false;
-        ballXMovement.CanMove = false;
-        ballYMovement.CanMove = false;
+        ballZMovement.ToggleMovement(onOff: false);
+        ballXMovement.ToggleMovement(onOff: false);
+        ballYMovement.ToggleMovement(onOff: false);
 
         ballYMovement.StartJumpInPlace();
 
@@ -98,17 +81,15 @@ public class GameLoopManager : Singleton<GameLoopManager>
 
         orbitalCameraRig.ToggleRotation();
 
-
-
         UIManager.Instance.ToggleWinScreen(true);
         UIManager.Instance.ResetAllAutoLetters();
     }
 
     private void GameLosePhase()
     {
-        ballZMovement.CanMove = false;
-        ballXMovement.CanMove = false;
-        ballYMovement.CanMove = false;
+        ballZMovement.ToggleMovement(onOff: false);
+        ballXMovement.ToggleMovement(onOff: false);
+        ballYMovement.ToggleMovement(onOff: false);
 
         UIManager.Instance.ToggleLoseScreen(true);
     }
