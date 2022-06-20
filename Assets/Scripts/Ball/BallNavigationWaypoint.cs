@@ -8,9 +8,8 @@ public class BallNavigationWaypoint : MonoBehaviour
 
     public float BounceApex => bounceApex;
 
-    [SerializeField] private BallNavigationWaypoint nextBounceBlock;
+    [SerializeField] public BallNavigationWaypoint NextBounceBlock;
 
-    public BallNavigationWaypoint NextBounceBlock => nextBounceBlock;
 
     private BoxCollider boxCollider;
 

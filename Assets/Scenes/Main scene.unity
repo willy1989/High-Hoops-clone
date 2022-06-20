@@ -4223,10 +4223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelSpawnPosition: {fileID: 1312010900}
   levels:
-  - {fileID: 5278139285304865142, guid: 60ab406875250624eb164a1e2d22ac5b, type: 3}
-  - {fileID: 5278139285304865142, guid: 32b1dce0d4b7ed049bd142baff3fb3a3, type: 3}
-  - {fileID: 5278139285304865142, guid: ed3020d0f8389e246948e67576e5a22d, type: 3}
-  - {fileID: 5278139285304865142, guid: 4ad7afc77526a7f42aa1935777abc85e, type: 3}
+  - {fileID: 5278139285304865142, guid: 1d3769357f00b4b4e90f3de008d4bce7, type: 3}
 --- !u!4 &1614470196
 Transform:
   m_ObjectHideFlags: 0
