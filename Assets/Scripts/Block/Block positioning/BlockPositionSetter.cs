@@ -35,7 +35,8 @@ public class BlockPositionSetter : MonoBehaviour
 
     private IEnumerator MoveIntoEndPositionCoroutine()
     {
-        blockRenderer.enabled = true;
+        if(blockRenderer != null)
+            blockRenderer.enabled = true;
 
         float elapsedTime = 0f;
 

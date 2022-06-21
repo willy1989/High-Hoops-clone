@@ -98,6 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6517803418624066193}
   - component: {fileID: 2216117662793532671}
+  - component: {fileID: 1918008594801869455}
   m_Layer: 0
   m_Name: Block group - dummy end
   m_TagString: Untagged
@@ -130,6 +131,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4646bc20cb5d81440a80aaea14b812dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1918008594801869455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2846965090422881041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6554b7c7d8f585349a01dc1e252fc3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5195841957046412589
@@ -173,11 +186,10 @@ GameObject:
   - component: {fileID: 8730021473892964614}
   - component: {fileID: 8730021473892964609}
   - component: {fileID: 8730021473892964615}
-  - component: {fileID: 8730021473892964610}
   - component: {fileID: 123635167207378026}
   m_Layer: 0
   m_Name: Block
-  m_TagString: BounceBlock
+  m_TagString: ColorBlock
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,20 +229,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8730021473892964610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8730021473892964613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf4ee09f50e4d2945ac14abeeb145834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceApex: 3
-  NextBounceBlock: {fileID: 0}
 --- !u!114 &123635167207378026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,3 +242,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballColor: 0
+  bounceApex: 3
+  NextBlock: {fileID: 0}

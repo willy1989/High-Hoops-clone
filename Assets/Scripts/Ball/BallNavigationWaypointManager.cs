@@ -9,13 +9,13 @@ public class BallNavigationWaypointManager : MonoBehaviour
 
     [SerializeField] private BallVfx ballVfx;
 
-    private BallNavigationWaypoint previousTarget;
+    private ColorBlock previousTarget;
 
-    private BallNavigationWaypoint nextTarget;
+    private ColorBlock nextTarget;
 
-    public BallNavigationWaypoint PreviousTarget => previousTarget;
+    public ColorBlock PreviousTarget => previousTarget;
 
-    public BallNavigationWaypoint NextTarget => nextTarget;
+    public ColorBlock NextTarget => nextTarget;
 
     private bool touchedEndZoneOnce = false;
 
@@ -38,9 +38,9 @@ public class BallNavigationWaypointManager : MonoBehaviour
             }
         }
 
-        else if (other.CompareTag(Constants.BouceBlock_Tag))
+        else if (other.CompareTag(Constants.ColorBlock_Tag))
         {
-            BallNavigationWaypoint waypoint = other.GetComponent<BallNavigationWaypoint>();
+            ColorBlock waypoint = other.GetComponent<ColorBlock>();
 
             if (waypoint == null)
                 return;
@@ -69,13 +69,13 @@ public class BallNavigationWaypointManager : MonoBehaviour
         }
     }
 
-    public void SetNextTarget(BallNavigationWaypoint bounceBlock)
+    public void SetNextTarget(ColorBlock colorBlock)
     {
         previousTarget = nextTarget;
-        nextTarget = bounceBlock.NextBounceBlock;
+        nextTarget = colorBlock.NextBlock;
     }
 
-    public void SetNextTarget(BallNavigationWaypoint previousWaypoint, BallNavigationWaypoint nextWaypoint)
+    public void SetNextTarget(ColorBlock previousWaypoint, ColorBlock nextWaypoint)
     {
         previousTarget = previousWaypoint;
         nextTarget = nextWaypoint;

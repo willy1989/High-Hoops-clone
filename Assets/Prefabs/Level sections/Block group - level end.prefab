@@ -155,6 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 961052586558391263}
   - component: {fileID: 1506096165617825522}
+  - component: {fileID: 6008860736265098145}
   m_Layer: 0
   m_Name: Block group - level end
   m_TagString: Untagged
@@ -189,6 +190,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4646bc20cb5d81440a80aaea14b812dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6008860736265098145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7756880762031571750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6554b7c7d8f585349a01dc1e252fc3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8157131054570285410
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +214,6 @@ GameObject:
   - component: {fileID: 602755856431505426}
   - component: {fileID: 3792265466842743410}
   - component: {fileID: 7980642351577133141}
-  - component: {fileID: 8539613546229084802}
   - component: {fileID: 3532185050326932007}
   m_Layer: 0
   m_Name: Block
@@ -286,20 +298,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8539613546229084802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8157131054570285410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf4ee09f50e4d2945ac14abeeb145834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceApex: 3
-  NextBounceBlock: {fileID: 0}
 --- !u!114 &3532185050326932007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,3 +311,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballColor: 0
+  bounceApex: 3
+  NextBounceBlock: {fileID: 0}

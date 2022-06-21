@@ -4,58 +4,50 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    [SerializeField] private BallNavigationWaypoint firstWayPoint;
+    public ColorBlock FirstWayPoint { get; private set; }
 
-    [SerializeField] private BallNavigationWaypoint secondWayPoint;
+    public ColorBlock SecondWayPoint { get; private set; }
 
-    private BlockPositionSetterGroup[] blockPositionSetterGroups;
+    private ColorBlockGroup[] colorBlockGroups;
 
-    [SerializeField] private BallNavigationWaypoint[][] ballNavigationWaypoints;
+    public BlockPositionSetterGroup[] BlockPositionSetterGroups { get; private set; }
 
-    public BallNavigationWaypoint FirstWayPoint => firstWayPoint;
-    public BallNavigationWaypoint SecondWayPoint => secondWayPoint;
-
-    public BlockPositionSetterGroup[] BlockPositionSetterGroups => blockPositionSetterGroups;
 
     private void Awake()
     {
-        blockPositionSetterGroups = GetComponentsInChildren<BlockPositionSetterGroup>();
+        BlockPositionSetterGroups = GetComponentsInChildren<BlockPositionSetterGroup>();
 
-        ballNavigationWaypoints = new BallNavigationWaypoint[blockPositionSetterGroups.Length][];
+        colorBlockGroups = GetComponentsInChildren<ColorBlockGroup>();
 
-        AssignNextWaypoints();
-    }
-
-    private void AssignNextWaypoints()
-    {
-        for(int i = 0; i < blockPositionSetterGroups.Length; i++)
+        foreach (ColorBlockGroup item in colorBlockGroups)
         {
-            ballNavigationWaypoints[i] = blockPositionSetterGroups[i].GetComponentsInChildren<BallNavigationWaypoint>();
+            item.AssignColorBlocks();
+            item.AssignDefaultColorBlocks();
         }
 
+        FirstWayPoint = colorBlockGroups[0].ColorBlocks[0];
+        SecondWayPoint = colorBlockGroups[1].ColorBlocks[0];
 
-        for(int x = 0; x < ballNavigationWaypoints.Length-1; x++)
+        AssignNextColorBlocks();
+    }
+
+    private void AssignNextColorBlocks()
+    {
+        for (int x = 0; x < colorBlockGroups.Length-1; x++)
         {
-            BallNavigationWaypoint[] currentGroup = ballNavigationWaypoints[x];
-            BallNavigationWaypoint[] nextGroup = ballNavigationWaypoints[x+1];
+            ColorBlockGroup currentGroup = colorBlockGroups[x];
+            ColorBlockGroup nextGroup = colorBlockGroups[x+1];
 
-            for (int y = 0; y < currentGroup.Length; y++)
+            if(currentGroup.DefaultBlueBlock != null &&
+                nextGroup.DefaultBlueBlock != null)
             {
-                BallNavigationWaypoint current = currentGroup[y];
+                currentGroup.DefaultBlueBlock.NextBlock = nextGroup.DefaultBlueBlock;
+            }
 
-                BallColor currentBallColor = current.gameObject.GetComponent<ColorBlock>().BallColor;
-
-                for (int z = 0; z < nextGroup.Length; z++)
-                {
-                    BallNavigationWaypoint next = nextGroup[z];
-
-                    BallColor nextBallColor = next.gameObject.GetComponent<ColorBlock>().BallColor;
-
-                    if(nextBallColor == currentBallColor || next.CompareTag(Constants.LevelEnd_Tag) == true)
-                    {
-                        current.NextBounceBlock = next;
-                    }
-                }
+            if (currentGroup.DefaultRedBlock != null &&
+                nextGroup.DefaultRedBlock != null)
+            {
+                currentGroup.DefaultRedBlock.NextBlock = nextGroup.DefaultRedBlock;
             }
         }
     }

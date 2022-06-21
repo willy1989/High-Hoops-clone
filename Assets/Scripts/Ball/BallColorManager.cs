@@ -28,7 +28,7 @@ public class BallColorManager : MonoBehaviour, IResetable
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(Constants.BouceBlock_Tag))
+        if(other.CompareTag(Constants.ColorBlock_Tag))
         {
             ColorBlock colorBlock = other.GetComponent<ColorBlock>();
 
