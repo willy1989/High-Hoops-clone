@@ -57,9 +57,9 @@ public class BallXMovement : MonoBehaviour, IResetable
 
     private void AutoPilotXAxisMovement()
     {
-        BallNavigationWaypoint previousWaypoint = ballNavigationWaypointManager.PreviousTarget;
+        ColorBlock previousWaypoint = ballNavigationWaypointManager.PreviousTarget;
 
-        BallNavigationWaypoint nextWaypoint = ballNavigationWaypointManager.NextTarget;
+        ColorBlock nextWaypoint = ballNavigationWaypointManager.NextTarget;
 
         float t = (Mathf.Abs(previousWaypoint.transform.position.z - transform.position.z)) 
                    / Mathf.Abs(nextWaypoint.transform.position.z - previousWaypoint.transform.position.z);

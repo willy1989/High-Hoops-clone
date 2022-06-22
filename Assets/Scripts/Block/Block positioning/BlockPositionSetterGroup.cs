@@ -11,7 +11,6 @@ public class BlockPositionSetterGroup : MonoBehaviour
         blockPositionSetters = GetComponentsInChildren<BlockPositionSetter>();
     }
 
-
     public void SetBlocksIntoPosition()
     {
         foreach(BlockPositionSetter item in blockPositionSetters)

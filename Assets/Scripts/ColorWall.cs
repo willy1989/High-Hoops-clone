@@ -12,10 +12,7 @@ public class ColorWall : MonoBehaviour
     // When the ball hits the wall, we need to update the next target block.
     // We do this for the auto pilot, because if we don't, since we just change the ball's color,
     // the auto pilot may lead the ball to a block that was of its previous color.
-    [SerializeField] private BallNavigationWaypoint nextTarget;
+    [SerializeField] private ColorBlock nextTarget;
 
-    public BallNavigationWaypoint NextTarget => nextTarget;
-
-
-    
+    public ColorBlock NextTarget => nextTarget;
 }
