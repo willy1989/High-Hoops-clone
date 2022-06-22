@@ -6,6 +6,10 @@ public class BlocksPositionManager : MonoBehaviour, IResetable
 {
     [SerializeField] private BlockPositionSetterGroup[] blockPositionSetterGroups;
 
+    private BlockPositionSetterGroup previousBlockPositionSetterGroup;
+
+    private BlockPositionSetterGroup nextBlockPositionSetterGroup;
+
     [SerializeField] private BallZMovement ballZMovement;
 
     private int firstBlocksThreshold = 6;
@@ -52,29 +56,39 @@ public class BlocksPositionManager : MonoBehaviour, IResetable
     // The blocks are gradually laid in front of the player as he or she moves across the level.
     private IEnumerator SetRestBlocksIntoPosition()
     {
-        float distanceBetweenBlocks = 6;
+        float distanceBetweenBlocks = (previousBlockPositionSetterGroup.transform.position -
+                                      nextBlockPositionSetterGroup.transform.position).magnitude;
 
         int blockIndex = firstBlocksThreshold;
 
         int maxIndex = blockPositionSetterGroups.Length - 1;
 
-        while(blockIndex <= maxIndex)
+        while(blockIndex < maxIndex)
         {
-            if(ballZMovement.transform.position.z > distanceBetweenBlocks)
+            if (ballZMovement.transform.position.z > distanceBetweenBlocks)
             {
                 blockPositionSetterGroups[blockIndex].SetBlocksIntoPosition();
 
                 blockIndex++;
-                distanceBetweenBlocks += 6;
+
+                previousBlockPositionSetterGroup = nextBlockPositionSetterGroup;
+
+                nextBlockPositionSetterGroup = blockPositionSetterGroups[blockIndex];
+
+                distanceBetweenBlocks += (previousBlockPositionSetterGroup.transform.position -
+                                      nextBlockPositionSetterGroup.transform.position).magnitude;
             }
 
             yield return null;
         }
     }
 
-    public void SetNextBlockPositionSetterGroups(BlockPositionSetterGroup[] _blockPositionSetterGroups)
+    public void SetBlockPositionSetterGroups(BlockPositionSetterGroup[] _blockPositionSetterGroups)
     {
         blockPositionSetterGroups = _blockPositionSetterGroups;
+
+        previousBlockPositionSetterGroup = blockPositionSetterGroups[firstBlocksThreshold];
+        nextBlockPositionSetterGroup = blockPositionSetterGroups[firstBlocksThreshold+1];
     }
 
     public void ResetState()
