@@ -1119,6 +1119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballAnimation: {fileID: 417328950}
   ballVfx: {fileID: 417328952}
+  previousTarget: {fileID: 0}
+  nextTarget: {fileID: 0}
 --- !u!114 &417328949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4223,7 +4225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelSpawnPosition: {fileID: 1312010900}
   levels:
-  - {fileID: 5278139285304865142, guid: 1d3769357f00b4b4e90f3de008d4bce7, type: 3}
+  - {fileID: 5278139285304865142, guid: bf15c9de5785f4440a355ec1f98d3fe7, type: 3}
 --- !u!4 &1614470196
 Transform:
   m_ObjectHideFlags: 0

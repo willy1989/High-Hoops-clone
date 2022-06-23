@@ -56,12 +56,12 @@ public class BlocksPositionManager : MonoBehaviour, IResetable
     // The blocks are gradually laid in front of the player as he or she moves across the level.
     private IEnumerator SetRestBlocksIntoPosition()
     {
-        float distanceBetweenBlocks = (previousBlockPositionSetterGroup.transform.position -
-                                      nextBlockPositionSetterGroup.transform.position).magnitude;
+        float distanceBetweenBlocks = Mathf.Abs(previousBlockPositionSetterGroup.transform.position.z -
+                                      nextBlockPositionSetterGroup.transform.position.z);
 
         int blockIndex = firstBlocksThreshold;
 
-        int maxIndex = blockPositionSetterGroups.Length - 1;
+        int maxIndex = blockPositionSetterGroups.Length;
 
         while(blockIndex < maxIndex)
         {
@@ -69,14 +69,14 @@ public class BlocksPositionManager : MonoBehaviour, IResetable
             {
                 blockPositionSetterGroups[blockIndex].SetBlocksIntoPosition();
 
-                blockIndex++;
-
                 previousBlockPositionSetterGroup = nextBlockPositionSetterGroup;
 
                 nextBlockPositionSetterGroup = blockPositionSetterGroups[blockIndex];
 
-                distanceBetweenBlocks += (previousBlockPositionSetterGroup.transform.position -
-                                      nextBlockPositionSetterGroup.transform.position).magnitude;
+                distanceBetweenBlocks += Mathf.Abs(previousBlockPositionSetterGroup.transform.position.z -
+                                      nextBlockPositionSetterGroup.transform.position.z);
+
+                blockIndex++;
             }
 
             yield return null;

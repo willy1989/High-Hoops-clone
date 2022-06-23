@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2714340518984807829}
   - component: {fileID: 2714340518984807828}
+  - component: {fileID: 6171896924293023545}
   m_Layer: 0
   m_Name: Block group - moving block blue
   m_TagString: Untagged
@@ -44,6 +45,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4646bc20cb5d81440a80aaea14b812dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6171896924293023545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714340518984807830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6554b7c7d8f585349a01dc1e252fc3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2714340519333870190
@@ -236,7 +249,6 @@ GameObject:
   - component: {fileID: 5508092311959067026}
   - component: {fileID: 5508092311959067021}
   - component: {fileID: 5508092311959067018}
-  - component: {fileID: 5508092311959067019}
   - component: {fileID: 5508092311959067020}
   m_Layer: 0
   m_Name: Blue block
@@ -336,6 +348,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballColor: 1
+  bounceApex: 3
+  NextBlock: {fileID: 0}
 --- !u!114 &5508092311959067021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,20 +412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5508092311959067020}
---- !u!114 &5508092311959067019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5508092311959067023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf4ee09f50e4d2945ac14abeeb145834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceApex: 3
-  nextBounceBlock: {fileID: 0}
 --- !u!95 &5508092311959067020
 Animator:
   serializedVersion: 3
@@ -519,6 +519,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballColor: 0
+  bounceApex: 0
+  NextBlock: {fileID: 0}
 --- !u!1 &6579750508141236087
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,3 +579,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballColor: 0
+  bounceApex: 0
+  NextBlock: {fileID: 0}

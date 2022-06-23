@@ -9,9 +9,9 @@ public class BallNavigationWaypointManager : MonoBehaviour
 
     [SerializeField] private BallVfx ballVfx;
 
-    private ColorBlock previousTarget;
+    [SerializeField] private ColorBlock previousTarget;
 
-    private ColorBlock nextTarget;
+    [SerializeField] private ColorBlock nextTarget;
 
     public ColorBlock PreviousTarget => previousTarget;
 

@@ -8,7 +8,7 @@ public class Level : MonoBehaviour
 
     public ColorBlock SecondWayPoint { get; private set; }
 
-    private ColorBlockGroup[] colorBlockGroups;
+    [SerializeField] private ColorBlockGroup[] colorBlockGroups;
 
     public BlockPositionSetterGroup[] BlockPositionSetterGroups { get; private set; }
 

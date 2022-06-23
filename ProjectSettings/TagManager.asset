@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - BounceBlock
   - DeathCollider
   - LevelEnd
   - PlayerBall
   - ColorWall
+  - ColorBlock
   layers:
   - Default
   - TransparentFX

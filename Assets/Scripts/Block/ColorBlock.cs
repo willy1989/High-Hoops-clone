@@ -19,6 +19,10 @@ public class ColorBlock : MonoBehaviour
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
+
+        if (bounceApex == 0)
+            bounceApex = 3;
+
     }
 
     public void DisableBlockCollider()
