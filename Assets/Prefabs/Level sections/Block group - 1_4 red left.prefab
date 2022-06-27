@@ -45,9 +45,10 @@ GameObject:
   - component: {fileID: 6610729803754641619}
   - component: {fileID: 294460273494977359}
   - component: {fileID: 7263366673574740246}
+  - component: {fileID: 3863685565354984278}
   m_Layer: 0
   m_Name: Block
-  m_TagString: ColorBlock
+  m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,8 +142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballColor: 0
-  bounceApex: 3
-  NextBlock: {fileID: 0}
 --- !u!114 &294460273494977359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +174,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3863685565354984278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610729803754641617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb88555f8d731b646a7bb98772bdd52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceApex: 0
 --- !u!1 &6610729804409748746
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6610729804409748748}
   - component: {fileID: 6610729804409748747}
-  - component: {fileID: 6768145129703064683}
+  - component: {fileID: 6390433074333878290}
   m_Layer: 0
   m_Name: Block group - 1_4 red left
   m_TagString: Untagged
@@ -221,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4646bc20cb5d81440a80aaea14b812dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6768145129703064683
+--- !u!114 &6390433074333878290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,7 +242,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6610729804409748746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6554b7c7d8f585349a01dc1e252fc3f2, type: 3}
+  m_Script: {fileID: 11500000, guid: c53a3383f93a3f142a4c672bab135e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6610729804517501877
@@ -246,9 +258,10 @@ GameObject:
   - component: {fileID: 6610729804517501865}
   - component: {fileID: 6610729804517501864}
   - component: {fileID: 7791846782115041230}
+  - component: {fileID: 7663538999363661493}
   m_Layer: 0
   m_Name: Invisible blue block
-  m_TagString: ColorBlock
+  m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,8 +355,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballColor: 1
+--- !u!114 &7663538999363661493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610729804517501877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb88555f8d731b646a7bb98772bdd52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   bounceApex: 0
-  NextBlock: {fileID: 0}
 --- !u!1 &6610729804766048645
 GameObject:
   m_ObjectHideFlags: 0

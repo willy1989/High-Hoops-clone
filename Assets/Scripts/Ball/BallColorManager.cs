@@ -9,7 +9,7 @@ public class BallColorManager : MonoBehaviour, IResetable
 
     public BallColor CurrentBallColor => currentBallColor;
 
-    [SerializeField] private BallDeath ballDeath;
+    [SerializeField] private BallSpawnManager ballDeath;
 
     [SerializeField] private BallAnimation ballAnimation;
 
@@ -28,7 +28,7 @@ public class BallColorManager : MonoBehaviour, IResetable
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(Constants.ColorBlock_Tag))
+        if(other.CompareTag(Constants.Waypoint_Tag))
         {
             ColorBlock colorBlock = other.GetComponent<ColorBlock>();
 

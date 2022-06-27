@@ -47,7 +47,7 @@ public class GameLoopManager : Singleton<GameLoopManager>
     {
         levelLoader.LoadLevel();
 
-        ballNavigationWaypointManager.SetNextTarget(levelLoader.CurrentLevel.FirstWayPoint, levelLoader.CurrentLevel.SecondWayPoint);
+        ballNavigationWaypointManager.SetUpWaypoints();
 
         blocksPositionManager.SetBlockPositionSetterGroups(levelLoader.CurrentLevel.BlockPositionSetterGroups);
 

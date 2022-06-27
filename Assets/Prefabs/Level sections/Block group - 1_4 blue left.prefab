@@ -42,12 +42,13 @@ GameObject:
   - component: {fileID: 6610729803754641622}
   - component: {fileID: 6610729803754641621}
   - component: {fileID: 6610729803754641620}
-  - component: {fileID: 6610729803754641619}
   - component: {fileID: 294460273494977359}
+  - component: {fileID: 6610729803754641619}
+  - component: {fileID: 7914836346341247558}
   - component: {fileID: 7263366673574740246}
   m_Layer: 0
   m_Name: Block
-  m_TagString: ColorBlock
+  m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,21 +129,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6610729803754641619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6610729803754641617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1506eb6e959bb5943a6431a13419c63c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballColor: 1
-  bounceApex: 3
-  NextBlock: {fileID: 0}
 --- !u!114 &294460273494977359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +142,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7263366673574740246}
+--- !u!114 &6610729803754641619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610729803754641617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1506eb6e959bb5943a6431a13419c63c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballColor: 1
+--- !u!114 &7914836346341247558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610729803754641617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb88555f8d731b646a7bb98772bdd52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceApex: 0
 --- !u!95 &7263366673574740246
 Animator:
   serializedVersion: 3
@@ -185,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6610729804409748748}
   - component: {fileID: 6610729804409748747}
-  - component: {fileID: 5018218197180576345}
+  - component: {fileID: 8612113802805766605}
   m_Layer: 0
   m_Name: Block group - 1_4 blue left
   m_TagString: Untagged
@@ -221,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4646bc20cb5d81440a80aaea14b812dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5018218197180576345
+--- !u!114 &8612113802805766605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,7 +242,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6610729804409748746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6554b7c7d8f585349a01dc1e252fc3f2, type: 3}
+  m_Script: {fileID: 11500000, guid: c53a3383f93a3f142a4c672bab135e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6610729804517501877
@@ -245,9 +257,10 @@ GameObject:
   - component: {fileID: 6610729804517501866}
   - component: {fileID: 6610729804517501864}
   - component: {fileID: 2097703903163029885}
+  - component: {fileID: 6266554732913996880}
   m_Layer: 0
   m_Name: Invisble red block
-  m_TagString: ColorBlock
+  m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,8 +313,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballColor: 0
+--- !u!114 &6266554732913996880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610729804517501877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb88555f8d731b646a7bb98772bdd52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   bounceApex: 0
-  NextBlock: {fileID: 0}
 --- !u!1 &6610729804766048645
 GameObject:
   m_ObjectHideFlags: 0
