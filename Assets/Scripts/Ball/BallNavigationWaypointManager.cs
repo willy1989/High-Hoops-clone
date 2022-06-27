@@ -3,82 +3,131 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// How the navigation works.
+/// Each level is made of WaypointGroups. Each Waypoint they contain share the same z-axis position.
+/// Waypoint components are placed on blocks and provide information about their position and their color.
+/// The BallNavigationManager uses information from the Waypoints, e.g. its color and its position, to create a
+/// path for the ball to follow. 
+/// When colliding with a Waypoint, when define what the next Waypoint will be, based on the ball's color. If among the Waypoints 
+/// of the next WaypointGroup, no color matches that of the ball, then we use a default Waypoint, defined by the group.
+/// This is typically used for the end of the level and Waypoints with a ColorWall in between. 
+/// </summary>
+
 public class BallNavigationWaypointManager : MonoBehaviour
 {
+    [SerializeField] private BallColorManager ballColorManager;
+
     [SerializeField] private BallAnimation ballAnimation;
 
     [SerializeField] private BallVfx ballVfx;
 
-    [SerializeField] private ColorBlock previousTarget;
+    [SerializeField] private LevelLoader levelLoader;
 
-    [SerializeField] private ColorBlock nextTarget;
+    [SerializeField] private WaypointGroup[] waypointGroups;
 
-    public ColorBlock PreviousTarget => previousTarget;
+    public Waypoint PreviousWaypoint { get; private set; }
 
-    public ColorBlock NextTarget => nextTarget;
+    public Waypoint NextWaypoint { get; private set; }
+
+    private int waypointGroupIndex;
 
     private bool touchedEndZoneOnce = false;
 
     public Action ballReachedEndEvent;
 
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(Constants.LevelEnd_Tag))
+        if (other.CompareTag(Constants.ColorWall_Tag))
+            WallCollision(other.GetComponent<ColorWall>());
+
+        else if (other.CompareTag(Constants.Waypoint_Tag))
         {
             ballAnimation.BounceAnimation();
             SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.Jump);
             ballVfx.PlayDustPoof();
 
-            if (touchedEndZoneOnce == false)
+            Waypoint waypoint = other.GetComponent<Waypoint>();
+
+            if (waypointGroupIndex == waypointGroups.Length - 1 && touchedEndZoneOnce == false)
             {
                 ballReachedEndEvent?.Invoke();
                 SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.Victory);
                 touchedEndZoneOnce = true;
             }
-        }
 
-        else if (other.CompareTag(Constants.ColorBlock_Tag))
-        {
-            ColorBlock waypoint = other.GetComponent<ColorBlock>();
-
-            if (waypoint == null)
-                return;
-
-            SetNextTarget(waypoint);
-
-            waypoint.DisableBlockCollider();
-
-            ballAnimation.BounceAnimation();
-
-            SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.Jump);
-
-            ballVfx.PlayDustPoof();
-        }
-
-        else if (other.CompareTag(Constants.ColorWall_Tag))
-        {
-            ColorWall colorwall = other.GetComponent<ColorWall>();
-
-            if (colorwall == null)
-                return;
-
-            nextTarget = colorwall.NextTarget;
-
-            other.gameObject.SetActive(false);
+            else
+                SetNextWaypoint();
         }
     }
 
-    public void SetNextTarget(ColorBlock colorBlock)
+    private void WallCollision(ColorWall colorWall)
     {
-        previousTarget = nextTarget;
-        nextTarget = colorBlock.NextBlock;
+        if (colorWall == null)
+            return;
+
+        WaypointGroup nextWayPointGroup = waypointGroups[waypointGroupIndex];
+
+        if (colorWall.BallColor == BallColor.Red &&
+            nextWayPointGroup.RedWaypoint != null)
+            NextWaypoint = nextWayPointGroup.RedWaypoint;
+
+        else if (colorWall.BallColor == BallColor.Blue &&
+                 nextWayPointGroup.BlueWaypoint != null)
+            NextWaypoint = nextWayPointGroup.BlueWaypoint;
+
+        colorWall.gameObject.SetActive(false);
     }
 
-    public void SetNextTarget(ColorBlock previousWaypoint, ColorBlock nextWaypoint)
+    public void SetUpWaypoints()
     {
-        previousTarget = previousWaypoint;
-        nextTarget = nextWaypoint;
+        waypointGroups = levelLoader.CurrentLevel.GetComponentsInChildren<WaypointGroup>();
+
+        foreach(WaypointGroup item in waypointGroups)
+        {
+            item.AssignWaypoints();
+        }
+
+        SetFirstWaypoint();
+    }
+
+    private void SetFirstWaypoint()
+    {
+        PreviousWaypoint = waypointGroups[0].DefaultWaypoint;
+        NextWaypoint = waypointGroups[1].DefaultWaypoint;
         touchedEndZoneOnce = false;
+
+        waypointGroupIndex = 1;
     }
+
+
+    private void SetNextWaypoint()
+    {
+        waypointGroupIndex++;
+
+        if (waypointGroupIndex >= waypointGroups.Length)
+            return;
+
+        PreviousWaypoint = NextWaypoint;
+
+        WaypointGroup nextWayPointGroup = waypointGroups[waypointGroupIndex];
+        
+        if (waypointGroupIndex == waypointGroups.Length-1)
+            NextWaypoint = nextWayPointGroup.DefaultWaypoint;
+
+        else if (ballColorManager.CurrentBallColor == BallColor.Red && 
+                 nextWayPointGroup.RedWaypoint != null)
+            NextWaypoint = nextWayPointGroup.RedWaypoint;
+
+        else if (ballColorManager.CurrentBallColor == BallColor.Blue &&
+                 nextWayPointGroup.BlueWaypoint != null)
+            NextWaypoint = nextWayPointGroup.BlueWaypoint;
+
+        else
+        {
+            NextWaypoint = nextWayPointGroup.DefaultWaypoint;
+        }
+    }
+
+    
 }

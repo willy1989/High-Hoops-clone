@@ -97,12 +97,13 @@ GameObject:
   - component: {fileID: 5368998008663953025}
   - component: {fileID: 5368998008663953024}
   - component: {fileID: 5368998008663953031}
-  - component: {fileID: 5368998008663953030}
+  - component: {fileID: 3481235751926713699}
   - component: {fileID: 7424790479509969785}
+  - component: {fileID: 5671239235207292190}
   - component: {fileID: 3861257251075484875}
   m_Layer: 0
   m_Name: Block
-  m_TagString: ColorBlock
+  m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,7 +184,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5368998008663953030
+--- !u!114 &3481235751926713699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,12 +193,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5368998008663953028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1506eb6e959bb5943a6431a13419c63c, type: 3}
+  m_Script: {fileID: 11500000, guid: cb88555f8d731b646a7bb98772bdd52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballColor: 1
-  bounceApex: 3
-  NextBlock: {fileID: 0}
+  bounceApex: 0
 --- !u!114 &7424790479509969785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +210,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3861257251075484875}
+--- !u!114 &5671239235207292190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368998008663953028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1506eb6e959bb5943a6431a13419c63c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballColor: 1
 --- !u!95 &3861257251075484875
 Animator:
   serializedVersion: 3
@@ -240,7 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5368998009307277592}
   - component: {fileID: 5368998009307277599}
-  - component: {fileID: 7079907425507262087}
+  - component: {fileID: 6104321259803476835}
   m_Layer: 0
   m_Name: Block group - full blue block + hoop
   m_TagString: Untagged
@@ -276,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4646bc20cb5d81440a80aaea14b812dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7079907425507262087
+--- !u!114 &6104321259803476835
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -285,7 +297,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5368998009307277598}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6554b7c7d8f585349a01dc1e252fc3f2, type: 3}
+  m_Script: {fileID: 11500000, guid: c53a3383f93a3f142a4c672bab135e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5368998009804917674

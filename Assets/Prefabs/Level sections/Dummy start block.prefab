@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5544244540750235946}
   - component: {fileID: 1208095063492186391}
-  - component: {fileID: 8138174282552475009}
+  - component: {fileID: 418486050511957051}
+  - component: {fileID: 8869981817591917500}
   m_Layer: 0
   m_Name: Dummy start block
-  m_TagString: ColorBlock
+  m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,9 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballColor: 0
-  bounceApex: 3
-  NextBlock: {fileID: 0}
---- !u!114 &8138174282552475009
+--- !u!114 &418486050511957051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,6 +55,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5544244540750235945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6554b7c7d8f585349a01dc1e252fc3f2, type: 3}
+  m_Script: {fileID: 11500000, guid: cb88555f8d731b646a7bb98772bdd52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waypointType: 1
+  bounceApex: 0
+--- !u!114 &8869981817591917500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544244540750235945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53a3383f93a3f142a4c672bab135e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blueWaypoint: {fileID: 0}
+  redWaypoint: {fileID: 0}
+  endWaypoint: {fileID: 0}

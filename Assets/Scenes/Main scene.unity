@@ -1117,10 +1117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2514ddfed801144cb736f015a7b6128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballColorManager: {fileID: 417328947}
   ballAnimation: {fileID: 417328950}
   ballVfx: {fileID: 417328952}
-  previousTarget: {fileID: 0}
-  nextTarget: {fileID: 0}
+  levelLoader: {fileID: 1614470195}
+  waypointGroups: []
 --- !u!114 &417328949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4225,7 +4226,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelSpawnPosition: {fileID: 1312010900}
   levels:
+  - {fileID: 5278139285304865142, guid: 60ab406875250624eb164a1e2d22ac5b, type: 3}
+  - {fileID: 5278139285304865142, guid: 32b1dce0d4b7ed049bd142baff3fb3a3, type: 3}
+  - {fileID: 5278139285304865142, guid: ed3020d0f8389e246948e67576e5a22d, type: 3}
+  - {fileID: 5278139285304865142, guid: 4ad7afc77526a7f42aa1935777abc85e, type: 3}
   - {fileID: 5278139285304865142, guid: bf15c9de5785f4440a355ec1f98d3fe7, type: 3}
+  - {fileID: 5278139285304865142, guid: 1d3769357f00b4b4e90f3de008d4bce7, type: 3}
 --- !u!4 &1614470196
 Transform:
   m_ObjectHideFlags: 0
@@ -4802,7 +4808,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135000036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

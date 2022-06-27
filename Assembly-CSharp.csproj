@@ -53,10 +53,12 @@
     <UnityVersion>2020.3.22f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Waypoint.cs" />
     <Compile Include="Assets\Scripts\FrameRateSettings.cs" />
     <Compile Include="Assets\Scripts\Ball\BallXMovement.cs" />
     <Compile Include="Assets\Scripts\Ball\BallNavigationWaypointManager.cs" />
-    <Compile Include="Assets\Scripts\Ball\BallDeath.cs" />
+    <Compile Include="Assets\Scripts\Ball\BallSpawnManager.cs" />
+    <Compile Include="Assets\Scripts\WaypointGroup.cs" />
     <Compile Include="Assets\Scripts\Ball\BallYMovement.cs" />
     <Compile Include="Assets\Scripts\Block\Block positioning\BlockPositionSetterGroup.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
@@ -88,7 +90,6 @@
     <Compile Include="Assets\Scripts\Block\MovingBlock.cs" />
     <Compile Include="Assets\Scripts\Level.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
-    <Compile Include="Assets\Scripts\ColorBlockGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

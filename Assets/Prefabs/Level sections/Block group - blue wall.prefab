@@ -195,7 +195,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballColor: 1
-  nextTarget: {fileID: 0}
 --- !u!1 &5311293479266210931
 GameObject:
   m_ObjectHideFlags: 0
