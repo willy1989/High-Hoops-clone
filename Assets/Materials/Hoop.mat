@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hoop
-  m_Shader: {fileID: -6465566751694194690, guid: 17265e957b551634a8ab041884d3f1ea,
+  m_Shader: {fileID: -6465566751694194690, guid: 05934ca4f1640c240b92cf8b3e5b119e,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -125,6 +125,8 @@ Material:
     - MainColor_: {r: 1, g: 0.7791061, b: 0.02352941, a: 0}
     - _BaseColor: {r: 1, g: 0.8960532, b: 0, a: 1}
     - _Color: {r: 0.9245283, g: 0.8425885, b: 0.19624424, a: 1}
+    - _EdgeColor: {r: 0, g: 1, b: 0.93309766, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MainColor: {r: 1, g: 0.8644768, b: 0.0235849, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
