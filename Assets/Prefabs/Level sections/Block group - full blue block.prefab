@@ -117,9 +117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53a3383f93a3f142a4c672bab135e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueWaypoint: {fileID: 0}
-  redWaypoint: {fileID: 0}
-  endWaypoint: {fileID: 0}
 --- !u!1 &7256103457083351543
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,7 +181,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 84fe9f2baaec1ca4aba0110281ae55e7, type: 2}
+  - {fileID: 2100000, guid: 9037dc5ac2c40a84ca8b64ba07d83ef6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -244,7 +241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb88555f8d731b646a7bb98772bdd52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointType: 0
   bounceApex: 0
 --- !u!114 &4412410196199492471
 MonoBehaviour:
