@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blue block
+  m_Name: Level end block
   m_Shader: {fileID: -6465566751694194690, guid: 193b4897b1690b54ea431ab849aed125,
     type: 3}
   m_ShaderKeywords: 
@@ -34,5 +34,5 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - _Color: {r: 0, g: 0.116336346, b: 1, a: 0}
+    - _Color: {r: 1, g: 0, b: 0.6039216, a: 0}
   m_BuildTextureStacks: []
