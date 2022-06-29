@@ -39,12 +39,12 @@ public class BallVfx : MonoBehaviour, IResetable
             ballVfxDictionary[ballVfxType].Play();
     }
 
-    public IEnumerator PlayVfx(BallVfxType ballVfxType, float duration, float endPadding)
+    public IEnumerator PlayVfx(BallVfxType ballVfxType, float effecDuration, float endDelay)
     {
         ballVfxDictionary[ballVfxType].Play();
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(effecDuration);
         ballVfxDictionary[ballVfxType].Stop();
-        yield return new WaitForSeconds(endPadding);
+        yield return new WaitForSeconds(endDelay);
     }
 
     public void ToggleTrailRenderer()

@@ -37,7 +37,7 @@ public class BallColorManager : MonoBehaviour, IResetable
 
             if (currentBallColor != colorBlock.BallColor)
             {
-                ballDeath.ToggleBallOff();
+                ballDeath.UnSpawnBallModel();
                 ballCollisionOppositeColorEvent?.Invoke();
             }
         }

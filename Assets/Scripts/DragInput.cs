@@ -18,17 +18,13 @@ public class DragInput : MonoBehaviour
     {
         if(Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);
+            Vector2 touchDelta = Input.GetTouch(0).deltaPosition;
 
-            Vector2 temp = touch.deltaPosition;
-
-            DragInputVector = new Vector2(temp.x / Screen.width, temp.y / Screen.height);
+            DragInputVector = new Vector2(touchDelta.x / Screen.width, touchDelta.y / Screen.height);
         }
 
         else
-        {
             DragInputVector = Vector2.zero;
-        }
     }
 
 

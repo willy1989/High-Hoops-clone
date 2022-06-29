@@ -1,6 +1,5 @@
 using System; 
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,11 +48,15 @@ public class GameLoopManager : Singleton<GameLoopManager>
         StartCoroutine(ResetGamePhaseCoroutine());
     }
 
+    /// <summary>
+    /// When a level start, we load the level gameobject. Every other aspect of the game
+    /// is reset and cleaned. This way we don't have to reload the entire scene. 
+    /// </summary>
     private IEnumerator ResetGamePhaseCoroutine()
     {
         levelLoader.LoadLevel();
 
-        ballNavigationWaypointManager.SetUpWaypoints();
+        ballNavigationWaypointManager.PrepareWaypoints();
 
         blocksPositionManager.SetBlockPositionSetterGroups(levelLoader.CurrentLevel.BlockPositionSetterGroups);
 

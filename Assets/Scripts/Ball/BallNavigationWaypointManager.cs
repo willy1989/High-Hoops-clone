@@ -3,17 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// How the ball navigation works.
-/// Each level is made of WaypointGroups. Each Waypoint they contain share the same z-axis position.
-/// Waypoint components are placed on blocks and provide information about their position and their color.
-/// The BallNavigationManager uses information from the Waypoints, e.g. its color and its position, to create a
-/// path for the ball to follow. 
-/// When colliding with a Waypoint, when define what the next Waypoint will be, based on the ball's color. If among the Waypoints 
-/// of the next WaypointGroup, no color matches that of the ball, then we use a default Waypoint, defined by the group.
-/// This is typically used for the end of the level and Waypoints with a ColorWall in between. 
-/// </summary>
-
 public class BallNavigationWaypointManager : MonoBehaviour
 {
     [SerializeField] private BallColorManager ballColorManager;
@@ -39,7 +28,7 @@ public class BallNavigationWaypointManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(Constants.ColorWall_Tag))
-            WallCollision(other.GetComponent<ColorWall>());
+            SetNextWaypoint(other.GetComponent<ColorWall>());
 
         else if (other.CompareTag(Constants.Waypoint_Tag))
         {
@@ -61,25 +50,13 @@ public class BallNavigationWaypointManager : MonoBehaviour
         }
     }
 
-    private void WallCollision(ColorWall colorWall)
-    {
-        if (colorWall == null)
-            return;
-
-        WaypointGroup nextWayPointGroup = waypointGroups[waypointGroupIndex];
-
-        if (colorWall.BallColor == BallColor.Red &&
-            nextWayPointGroup.RedWaypoint != null)
-            NextWaypoint = nextWayPointGroup.RedWaypoint;
-
-        else if (colorWall.BallColor == BallColor.Blue &&
-                 nextWayPointGroup.BlueWaypoint != null)
-            NextWaypoint = nextWayPointGroup.BlueWaypoint;
-
-        colorWall.gameObject.SetActive(false);
-    }
-
-    public void SetUpWaypoints()
+    /// <summary>
+    /// Each level is made of WaypointGroups. Each Waypoint they contain share the same z-axis position.
+    /// Waypoint components are placed on blocks and provide information about their position and their color.
+    /// The BallNavigationManager uses information from the Waypoints, e.g. its color and its position, to create a
+    /// path for the ball to follow. 
+    /// </summary>
+    public void PrepareWaypoints()
     {
         waypointGroups = levelLoader.CurrentLevel.GetComponentsInChildren<WaypointGroup>();
 
@@ -100,7 +77,12 @@ public class BallNavigationWaypointManager : MonoBehaviour
         waypointGroupIndex = 1;
     }
 
-
+    /// <summary>
+    /// When the ball collides with a Waypoint, we define what the next Waypoint will be based on the ball's color. If among the Waypoints 
+    /// of the next WaypointGroup no color matches that of the ball, then we use a default Waypoint, defined by the group.
+    /// This last optioni is typically used for the block at the end of the level and Waypoints with a ColorWall in between.
+    /// Color wall change the color of the ball, so we need to update the next waypoint.
+    /// </summary>
     private void SetNextWaypoint()
     {
         waypointGroupIndex++;
@@ -129,5 +111,21 @@ public class BallNavigationWaypointManager : MonoBehaviour
         }
     }
 
-    
+    private void SetNextWaypoint(ColorWall colorWall)
+    {
+        if (colorWall == null)
+            return;
+
+        WaypointGroup nextWayPointGroup = waypointGroups[waypointGroupIndex];
+
+        if (colorWall.BallColor == BallColor.Red &&
+            nextWayPointGroup.RedWaypoint != null)
+            NextWaypoint = nextWayPointGroup.RedWaypoint;
+
+        else if (colorWall.BallColor == BallColor.Blue &&
+                 nextWayPointGroup.BlueWaypoint != null)
+            NextWaypoint = nextWayPointGroup.BlueWaypoint;
+
+        colorWall.gameObject.SetActive(false);
+    }
 }

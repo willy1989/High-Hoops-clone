@@ -14,7 +14,7 @@ public class BallSpawnManager : MonoBehaviour
 
     [SerializeField] private Renderer ballRenderer;
 
-    public void ToggleBallOff()
+    public void UnSpawnBallModel()
     {
         ballCollider.enabled = false;
         ballRenderer.enabled = false;
@@ -33,9 +33,9 @@ public class BallSpawnManager : MonoBehaviour
         ballRenderer.enabled = false;
 
         if (ballColorManager.CurrentBallColor == BallColor.Blue)
-            yield return ballVfx.PlayVfx(ballVfxType: BallVfxType.BlueImplosion, duration: 2.5f, endPadding: 0.5f);
+            yield return ballVfx.PlayVfx(ballVfxType: BallVfxType.BlueImplosion, effecDuration: 2.5f, endDelay: 0.5f);
         else
-            yield return ballVfx.PlayVfx(ballVfxType: BallVfxType.RedImplosion, duration: 2.5f, endPadding: 0.5f);
+            yield return ballVfx.PlayVfx(ballVfxType: BallVfxType.RedImplosion, effecDuration: 2.5f, endDelay: 0.5f);
 
         ballCollider.enabled = true;
         ballRenderer.enabled = true;
