@@ -34,18 +34,14 @@ public class DragInput : MonoBehaviour
         }
     }
 
-    public void ListenToFirstInput()
+
+    public void StartListenToFirstInput()
     {
         StartCoroutine(ListenToFirstInputCoroutine());
     }
 
     private IEnumerator ListenToFirstInputCoroutine()
     {
-        // We add a short delay as the game is reset.
-        // We do this to prevent the player from triggering the FirstInputRegisteredEvent
-        // as he or she presses the restart button.
-        yield return new WaitForSeconds(firstInputDelay);
-
         while(Input.touchCount == 0)
         {
             yield return null;

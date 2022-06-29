@@ -35,21 +35,22 @@ public class BallVfx : MonoBehaviour, IResetable
         redExplosion.Play();
     }
 
-    public IEnumerator PlayRedImplosion(float duration)
+    public IEnumerator PlayRedImplosion(float duration, float endPadding)
     {
-        yield return StartCoroutine(PlayVfx(redImplosion, duration));
+        yield return StartCoroutine(PlayVfx(redImplosion, duration, endPadding));
     }
 
-    public IEnumerator PlayBlueImplosion(float duration)
+    public IEnumerator PlayBlueImplosion(float duration, float endPadding)
     {
-        yield return StartCoroutine(PlayVfx(blueImplosion, duration));
+        yield return StartCoroutine(PlayVfx(blueImplosion, duration, endPadding));
     }
 
-    private IEnumerator PlayVfx(VisualEffect visualEffect, float duration)
+    private IEnumerator PlayVfx(VisualEffect visualEffect, float duration, float endPadding)
     {
         visualEffect.Play();
         yield return new WaitForSeconds(duration);
         visualEffect.Stop();
+        yield return new WaitForSeconds(endPadding);
     }
 
     public void PlayDustPoof()
