@@ -13,9 +13,17 @@ public class BallVfx : MonoBehaviour, IResetable
 
     [SerializeField] private TrailRenderer trailRenderer;
 
+    private Dictionary<BallVfxType, VisualEffect> ballVfxDictionary = new Dictionary<BallVfxType, VisualEffect>();
+
     private void Awake()
     {
         ResetState();
+
+        ballVfxDictionary.Add(BallVfxType.BlueExplosion, blueExplosion);
+        ballVfxDictionary.Add(BallVfxType.RedExplosion, redExplosion);
+        ballVfxDictionary.Add(BallVfxType.BlueImplosion, blueImplosion);
+        ballVfxDictionary.Add(BallVfxType.RedImplosion, redImplosion);
+        ballVfxDictionary.Add(BallVfxType.DustPoof, dustPoof);
     }
 
     private void Start()
@@ -25,37 +33,18 @@ public class BallVfx : MonoBehaviour, IResetable
         GameLoopManager.Instance.ResetGameEvent += ResetState;
     }
 
-    public void PlayBlueExplosion()
+    public void PlayVfx(BallVfxType ballVfxType)
     {
-        blueExplosion.Play();
+        if(ballVfxDictionary.ContainsKey(ballVfxType))
+            ballVfxDictionary[ballVfxType].Play();
     }
 
-    public void PlayRedExplosion()
+    public IEnumerator PlayVfx(BallVfxType ballVfxType, float duration, float endPadding)
     {
-        redExplosion.Play();
-    }
-
-    public IEnumerator PlayRedImplosion(float duration, float endPadding)
-    {
-        yield return StartCoroutine(PlayVfx(redImplosion, duration, endPadding));
-    }
-
-    public IEnumerator PlayBlueImplosion(float duration, float endPadding)
-    {
-        yield return StartCoroutine(PlayVfx(blueImplosion, duration, endPadding));
-    }
-
-    private IEnumerator PlayVfx(VisualEffect visualEffect, float duration, float endPadding)
-    {
-        visualEffect.Play();
+        ballVfxDictionary[ballVfxType].Play();
         yield return new WaitForSeconds(duration);
-        visualEffect.Stop();
+        ballVfxDictionary[ballVfxType].Stop();
         yield return new WaitForSeconds(endPadding);
-    }
-
-    public void PlayDustPoof()
-    {
-        dustPoof.Play();
     }
 
     public void ToggleTrailRenderer()
@@ -67,4 +56,13 @@ public class BallVfx : MonoBehaviour, IResetable
     {
         trailRenderer.enabled = false;
     }
+}
+
+public enum BallVfxType
+{
+    BlueExplosion,
+    RedExplosion,
+    BlueImplosion,
+    RedImplosion,
+    DustPoof
 }

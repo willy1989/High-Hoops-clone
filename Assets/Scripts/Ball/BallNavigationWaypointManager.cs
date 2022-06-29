@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// How the navigation works.
+/// How the ball navigation works.
 /// Each level is made of WaypointGroups. Each Waypoint they contain share the same z-axis position.
 /// Waypoint components are placed on blocks and provide information about their position and their color.
 /// The BallNavigationManager uses information from the Waypoints, e.g. its color and its position, to create a
@@ -45,7 +45,7 @@ public class BallNavigationWaypointManager : MonoBehaviour
         {
             ballAnimation.BounceAnimation();
             SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.Jump);
-            ballVfx.PlayDustPoof();
+            ballVfx.PlayVfx(ballVfxType: BallVfxType.DustPoof);
 
             Waypoint waypoint = other.GetComponent<Waypoint>();
 

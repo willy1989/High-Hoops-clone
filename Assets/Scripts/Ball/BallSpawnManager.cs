@@ -22,9 +22,9 @@ public class BallSpawnManager : MonoBehaviour
         SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.BallDeath);
 
         if (ballColorManager.CurrentBallColor == BallColor.Blue)
-            ballVfx.PlayBlueExplosion();
+            ballVfx.PlayVfx(ballVfxType: BallVfxType.BlueExplosion);
         else
-            ballVfx.PlayRedExplosion();
+            ballVfx.PlayVfx(ballVfxType: BallVfxType.RedExplosion);
     }
 
     public IEnumerator SpawnBallModel()
@@ -33,9 +33,9 @@ public class BallSpawnManager : MonoBehaviour
         ballRenderer.enabled = false;
 
         if (ballColorManager.CurrentBallColor == BallColor.Blue)
-            yield return ballVfx.PlayBlueImplosion(duration: 2.5f, endPadding: 0.5f);
+            yield return ballVfx.PlayVfx(ballVfxType: BallVfxType.BlueImplosion, duration: 2.5f, endPadding: 0.5f);
         else
-            yield return ballVfx.PlayRedImplosion(duration: 2.5f, endPadding: 0.5f);
+            yield return ballVfx.PlayVfx(ballVfxType: BallVfxType.RedImplosion, duration: 2.5f, endPadding: 0.5f);
 
         ballCollider.enabled = true;
         ballRenderer.enabled = true;
