@@ -9,8 +9,6 @@ public class UIManager : Singleton<UIManager>, IResetable
     [SerializeField] private GameObject loseScreen;
     [SerializeField] private GameObject winScreen;
 
-    [SerializeField] private float showStartScreenDelay;
-
     [SerializeField] private Text Aletter;
     [SerializeField] private Text Uletter;
     [SerializeField] private Text Tletter;
@@ -20,7 +18,6 @@ public class UIManager : Singleton<UIManager>, IResetable
     [SerializeField] private RawImage autoPilotDurationBarBackGround;
 
     private Dictionary<AutoLetter, Text> autoLetterDictionnary = new Dictionary<AutoLetter, Text>();
-
 
     protected override void Awake()
     {
@@ -45,15 +42,6 @@ public class UIManager : Singleton<UIManager>, IResetable
 
     public void ToggleStartScreen(bool onOff)
     {
-        if (onOff == false)
-            startScreen.SetActive(false);
-        else
-            StartCoroutine(ToggleStartScreenWithDelay(true));
-    }
-
-    private IEnumerator ToggleStartScreenWithDelay(bool onOff)
-    {
-        yield return new WaitForSeconds(showStartScreenDelay);
         startScreen.SetActive(onOff);
     }
 
@@ -120,7 +108,6 @@ public class UIManager : Singleton<UIManager>, IResetable
     {
         ToggleLoseScreen(false);
         ToggleWinScreen(false);
-        ToggleStartScreen(true);
         ResetAllAutoLetters();
         autoPilotDurationBar.enabled = false;
         autoPilotDurationBarBackGround.enabled = false;

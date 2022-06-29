@@ -1,24 +1,29 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BlocksPositionManager : MonoBehaviour, IResetable
 {
     [SerializeField] private BlockPositionSetterGroup[] blockPositionSetterGroups;
 
+    [SerializeField] private BallZMovement ballZMovement;
+
+    [SerializeField] private float firstBlockPositionDuration;
+
     private BlockPositionSetterGroup previousBlockPositionSetterGroup;
 
     private BlockPositionSetterGroup nextBlockPositionSetterGroup;
-
-    [SerializeField] private BallZMovement ballZMovement;
 
     private int firstBlocksThreshold = 6;
 
     private IEnumerator setBlockCoroutine;
 
+    private WaitForSeconds firstBlocksPositionWait;
+
     private void Awake()
     {
         ResetState();
+
+        firstBlocksPositionWait = new WaitForSeconds(firstBlockPositionDuration);
     }
 
     private void Start()
@@ -49,7 +54,7 @@ public class BlocksPositionManager : MonoBehaviour, IResetable
 
             blockIndex++;
 
-            yield return new WaitForSeconds(0.5f);
+            yield return firstBlocksPositionWait;
         }
     }
 

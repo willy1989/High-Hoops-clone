@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HoopAnimation : MonoBehaviour
@@ -16,10 +15,13 @@ public class HoopAnimation : MonoBehaviour
 
     private MaterialPropertyBlock materialPropertyBlock;
 
+    private WaitForSeconds animationWait;
+
     private void Awake()
     {
         materialPropertyBlock = new MaterialPropertyBlock();
         renderer.GetPropertyBlock(materialPropertyBlock);
+        animationWait = new WaitForSeconds(0.3f);
     }
 
     public void DisolveHoopModel()
@@ -31,10 +33,10 @@ public class HoopAnimation : MonoBehaviour
     {
         float elapsedTime = 0f;
 
-        float t = 0f;
+        float t;
 
         // We wait for the shake animation to end
-        yield return new WaitForSeconds(0.3f);
+        yield return animationWait;
 
         while(elapsedTime <= 1f)
         {

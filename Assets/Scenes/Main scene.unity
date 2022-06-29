@@ -527,7 +527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9d118e708516d41b4f7d9595a0a8fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstInputDelay: 3
 --- !u!4 &208626695
 Transform:
   m_ObjectHideFlags: 0
@@ -1329,6 +1328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockPositionSetterGroups: []
   ballZMovement: {fileID: 380510110}
+  firstBlockPositionDuration: 0.5
 --- !u!4 &447881092
 Transform:
   m_ObjectHideFlags: 0

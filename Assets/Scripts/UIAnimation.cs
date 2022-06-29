@@ -21,5 +21,4 @@ public class UIAnimation : MonoBehaviour
     {
         autoLettersAnimator.SetTrigger(Constants.AutoOff_AnimationTrigger);
     }
-
 }

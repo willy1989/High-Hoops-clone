@@ -64,6 +64,8 @@ public class GameLoopManager : Singleton<GameLoopManager>
 
         yield return ballSpawnManager.SpawnBallModel();
 
+        UIManager.Instance.ToggleStartScreen(onOff:true);
+
         dragInput.StartListenToFirstInput();
     }
 

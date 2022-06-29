@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AutoPilotManager : Singleton<AutoPilotManager>, IResetable
@@ -13,6 +12,8 @@ public class AutoPilotManager : Singleton<AutoPilotManager>, IResetable
 
     public float AutoPilotDuration => autoPilotDuration;
 
+    private WaitForSeconds autoPilotDurationWait;
+
     public Action AutoPilotStartEvent;
     public Action AutoPilotEndEvent;
 
@@ -22,6 +23,8 @@ public class AutoPilotManager : Singleton<AutoPilotManager>, IResetable
     {
         base.Awake();
         ResetState();
+
+        autoPilotDurationWait = new WaitForSeconds(autoPilotDuration);
     }
 
     private void Start()
@@ -57,7 +60,7 @@ public class AutoPilotManager : Singleton<AutoPilotManager>, IResetable
         AutoPilotStartEvent?.Invoke();
         ballXMovement.AutoPilotOnOff = true;
 
-        yield return new WaitForSeconds(autoPilotDuration);
+        yield return autoPilotDurationWait;
 
         ballXMovement.AutoPilotOnOff = false;
         AutoPilotEndEvent?.Invoke();
