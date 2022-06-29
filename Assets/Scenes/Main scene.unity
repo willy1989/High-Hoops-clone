@@ -2809,6 +2809,7 @@ MonoBehaviour:
   dragInput: {fileID: 208626694}
   ballNavigationWaypointManager: {fileID: 417328948}
   ballColorManager: {fileID: 417328947}
+  ballSpawnManager: {fileID: 417328949}
   blocksPositionManager: {fileID: 447881091}
   cameraManager: {fileID: 688704050}
   orbitalCameraRig: {fileID: 916489863}

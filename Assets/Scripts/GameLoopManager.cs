@@ -15,6 +15,7 @@ public class GameLoopManager : Singleton<GameLoopManager>
     [SerializeField] private DragInput dragInput;
     [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
     [SerializeField] private BallColorManager ballColorManager;
+    [SerializeField] private BallSpawnManager ballSpawnManager;
     [SerializeField] private BlocksPositionManager blocksPositionManager;
     [SerializeField] private CameraManager cameraManager;
     [SerializeField] private OrbitalCameraRig orbitalCameraRig;
@@ -45,6 +46,11 @@ public class GameLoopManager : Singleton<GameLoopManager>
 
     private void ResetGamePhase()
     {
+        StartCoroutine(ResetGamePhaseCoroutine());
+    }
+
+    private IEnumerator ResetGamePhaseCoroutine()
+    {
         levelLoader.LoadLevel();
 
         ballNavigationWaypointManager.SetUpWaypoints();
@@ -53,7 +59,9 @@ public class GameLoopManager : Singleton<GameLoopManager>
 
         ResetGameEvent?.Invoke();
 
-        dragInput.ListenToFirstInput();
+        yield return ballSpawnManager.SpawnBallModel();
+
+        dragInput.StartListenToFirstInput();
     }
 
     private void GameStartPhase()
