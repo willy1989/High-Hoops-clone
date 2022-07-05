@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class AutoPilotManager : Singleton<AutoPilotManager>, IResetable
 {
-    [SerializeField] private int grabbedLetterThreshold;
+    [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
 
     [SerializeField] private BallXMovement ballXMovement;
 
-    [SerializeField] private float autoPilotDuration;
-
-    public float AutoPilotDuration => autoPilotDuration;
-
-    private WaitForSeconds autoPilotDurationWait;
+    [SerializeField] private int grabbedLetterThreshold;
 
     public Action AutoPilotStartEvent;
     public Action AutoPilotEndEvent;
 
     private int hoopsCount = 0;
+    public float AutoPilotDuration { get; private set; }
+
+    private IEnumerator autoPilotCoroutine;
 
     protected override void Awake()
     {
         base.Awake();
-        ResetState();
 
-        autoPilotDurationWait = new WaitForSeconds(autoPilotDuration);
+        ballNavigationWaypointManager.ballReachedEndEvent += StopAutoPilot;
+
+        ResetState();
     }
 
     private void Start()
@@ -37,22 +37,28 @@ public class AutoPilotManager : Singleton<AutoPilotManager>, IResetable
         hoopsCount++;
 
         SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.HitHoopCenter);
+    }
 
+    public void StartAutoPilot(float autoPilotDuration)
+    {
         if (hoopsCount >= grabbedLetterThreshold)
         {
-            StartAutoPilot();
+            AutoPilotDuration = autoPilotDuration;
+            autoPilotCoroutine = AutoPilot();
+            StartCoroutine(autoPilotCoroutine);
             hoopsCount = 0;
         }
     }
 
-
-    public void StartAutoPilot()
+    private void StopAutoPilot()
     {
-        if (ballXMovement.AutoPilotOnOff == true)
-            return;
-
-
-        StartCoroutine(AutoPilot());
+        if(autoPilotCoroutine != null)
+        {
+            StopCoroutine(autoPilotCoroutine);
+            AutoPilotEndEvent?.Invoke();
+        }
+            
+        ballXMovement.AutoPilotOnOff = false;
     }
 
     private IEnumerator AutoPilot()
@@ -60,7 +66,7 @@ public class AutoPilotManager : Singleton<AutoPilotManager>, IResetable
         AutoPilotStartEvent?.Invoke();
         ballXMovement.AutoPilotOnOff = true;
 
-        yield return autoPilotDurationWait;
+        yield return new WaitForSeconds(AutoPilotDuration);
 
         ballXMovement.AutoPilotOnOff = false;
         AutoPilotEndEvent?.Invoke();
@@ -69,5 +75,7 @@ public class AutoPilotManager : Singleton<AutoPilotManager>, IResetable
     public void ResetState()
     {
         hoopsCount = 0;
+        autoPilotCoroutine = null;
+        ballXMovement.AutoPilotOnOff = false;
     }
 }

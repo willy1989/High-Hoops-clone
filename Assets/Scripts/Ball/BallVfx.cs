@@ -47,7 +47,7 @@ public class BallVfx : MonoBehaviour, IResetable
         yield return new WaitForSeconds(endDelay);
     }
 
-    public void ToggleTrailRenderer()
+    private void ToggleTrailRenderer()
     {
         trailRenderer.enabled = !trailRenderer.enabled;
     }

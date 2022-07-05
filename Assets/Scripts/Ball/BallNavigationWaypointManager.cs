@@ -38,15 +38,18 @@ public class BallNavigationWaypointManager : MonoBehaviour
 
             Waypoint waypoint = other.GetComponent<Waypoint>();
 
-            if (waypointGroupIndex == waypointGroups.Length - 1 && touchedEndZoneOnce == false)
+            if(waypointGroupIndex != waypointGroups.Length-1)
+            {
+                other.enabled = false;
+                SetNextWaypoint();
+            }
+
+            else if (waypointGroupIndex == waypointGroups.Length-1 && touchedEndZoneOnce == false)
             {
                 ballReachedEndEvent?.Invoke();
                 SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.Victory);
                 touchedEndZoneOnce = true;
             }
-
-            else
-                SetNextWaypoint();
         }
     }
 
@@ -85,10 +88,10 @@ public class BallNavigationWaypointManager : MonoBehaviour
     /// </summary>
     private void SetNextWaypoint()
     {
-        waypointGroupIndex++;
-
         if (waypointGroupIndex >= waypointGroups.Length)
             return;
+
+        waypointGroupIndex++;
 
         PreviousWaypoint = NextWaypoint;
 

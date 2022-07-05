@@ -3286,7 +3286,6 @@ MonoBehaviour:
   startScreen: {fileID: 1463856976}
   loseScreen: {fileID: 548302989}
   winScreen: {fileID: 1895031021}
-  showStartScreenDelay: 3
   Aletter: {fileID: 1557437043}
   Uletter: {fileID: 1877289995}
   Tletter: {fileID: 126749140}
@@ -3528,9 +3527,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c1b5e9e92e01a54b9d552e2d7957175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabbedLetterThreshold: 4
+  ballNavigationWaypointManager: {fileID: 417328948}
   ballXMovement: {fileID: 1323995132}
-  autoPilotDuration: 3
+  grabbedLetterThreshold: 4
 --- !u!1 &1380109379
 GameObject:
   m_ObjectHideFlags: 0
@@ -4232,7 +4231,7 @@ MonoBehaviour:
   - {fileID: 5278139285304865142, guid: ed3020d0f8389e246948e67576e5a22d, type: 3}
   - {fileID: 5278139285304865142, guid: 4ad7afc77526a7f42aa1935777abc85e, type: 3}
   - {fileID: 5278139285304865142, guid: bf15c9de5785f4440a355ec1f98d3fe7, type: 3}
-  - {fileID: 5278139285304865142, guid: 1d3769357f00b4b4e90f3de008d4bce7, type: 3}
+  - {fileID: 5278139285304865142, guid: fe13ac660b584ba48b5d3b4cad472647, type: 3}
 --- !u!4 &1614470196
 Transform:
   m_ObjectHideFlags: 0

@@ -8,15 +8,15 @@ public class Waypoint : MonoBehaviour
 
     [SerializeField] private float bounceApex;
 
-    private ColorBlock colorBlock;
+    public float BounceApex => bounceApex;
 
     private float defaultBounceApex = 3;
 
-    public float BounceApex => bounceApex;
+    private ColorBlock colorBlock;
 
     private void Awake()
     {
-        if (bounceApex == 0)
+        if (bounceApex <= 0)
             bounceApex = defaultBounceApex;
 
         colorBlock = GetComponent<ColorBlock>();
@@ -40,5 +40,5 @@ public class Waypoint : MonoBehaviour
 public enum WaypointType
 {
     Blue,
-    Red,
+    Red
 }

@@ -16,7 +16,6 @@ public class BlockPositionSetter : MonoBehaviour
     [SerializeField] private Transform startPosition;
     [SerializeField] private Transform endPosition;
 
-
     private void Awake()
     {
         if(animator != null)

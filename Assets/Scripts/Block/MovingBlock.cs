@@ -23,13 +23,13 @@ public class MovingBlock : MonoBehaviour
 
     private void Update()
     {
-        elapsedTime += Time.deltaTime;
-
         Move();
     }
 
     private void Move()
     {
+        elapsedTime += Time.deltaTime;
+
         elapsedTime %= moveDuration;
 
         float newXposition = movementCurve.Evaluate(elapsedTime / moveDuration);

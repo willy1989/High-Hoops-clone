@@ -58,14 +58,10 @@ public class BallColorManager : MonoBehaviour, IResetable
         currentBallColor = ballColor;
 
         if (currentBallColor == BallColor.Blue)
-        {
             ballAnimation.ChangeColor(startBallColor: BallColor.Red, targetBallColor: BallColor.Blue);
-        }
 
         else
-        {
             ballAnimation.ChangeColor(startBallColor: BallColor.Blue, targetBallColor: BallColor.Red);
-        }
     }
 
     public void ResetState()

@@ -12,6 +12,7 @@ public class HoopArea_Center : HoopArea
 
     [SerializeField] private AutoLetter autoLetter;
 
+
     new private void Awake()
     {
         base.Awake();

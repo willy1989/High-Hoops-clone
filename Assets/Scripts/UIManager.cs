@@ -19,6 +19,10 @@ public class UIManager : Singleton<UIManager>, IResetable
 
     private Dictionary<AutoLetter, Text> autoLetterDictionnary = new Dictionary<AutoLetter, Text>();
 
+    private float startWidth;
+
+    private IEnumerator autoPilotBarCoroutine;
+
     protected override void Awake()
     {
         base.Awake();
@@ -28,12 +32,15 @@ public class UIManager : Singleton<UIManager>, IResetable
         autoLetterDictionnary.Add(AutoLetter.T, Tletter);
         autoLetterDictionnary.Add(AutoLetter.O, Oletter);
 
+        startWidth = autoPilotDurationBar.rectTransform.sizeDelta.x;
+
         ResetState();
     }
 
     private void Start()
     {
         AutoPilotManager.Instance.AutoPilotEndEvent += ResetAllAutoLetters;
+        AutoPilotManager.Instance.AutoPilotEndEvent += StopUpdateAutoPilotDurationBar;
 
         AutoPilotManager.Instance.AutoPilotStartEvent += StartUpdateAutoPilotDurationBar;
 
@@ -62,7 +69,20 @@ public class UIManager : Singleton<UIManager>, IResetable
 
     private void StartUpdateAutoPilotDurationBar()
     {
-        StartCoroutine(UpdateAutoPilotBar());
+        autoPilotBarCoroutine = UpdateAutoPilotBar();
+
+        StartCoroutine(autoPilotBarCoroutine);
+    }
+
+    private void StopUpdateAutoPilotDurationBar()
+    {
+        if (autoPilotBarCoroutine != null)
+            StopCoroutine(autoPilotBarCoroutine);
+
+        autoPilotDurationBar.rectTransform.sizeDelta = new Vector2(startWidth, autoPilotDurationBar.rectTransform.sizeDelta.y);
+
+        autoPilotDurationBar.enabled = false;
+        autoPilotDurationBarBackGround.enabled = false;
     }
 
     private IEnumerator UpdateAutoPilotBar()
@@ -74,8 +94,6 @@ public class UIManager : Singleton<UIManager>, IResetable
         float duration = AutoPilotManager.Instance.AutoPilotDuration;
 
         float elapsedTime = 0;
-
-        float startWidth = autoPilotDurationBar.rectTransform.sizeDelta.x;
 
         while (elapsedTime <= duration)
         {
