@@ -6,13 +6,15 @@ public class MovingBlock : MonoBehaviour
 {
     [SerializeField] private Transform startPosition;
     [SerializeField] private Transform endPosition;
-    [SerializeField] private Transform cube;
+    [SerializeField] private Transform block;
 
     private float elapsedTime;
 
     [SerializeField] private float moveDuration;
 
     [SerializeField] AnimationCurve movementCurve;
+
+    private bool canMove = true;
 
     private void Awake()
     {
@@ -28,13 +30,15 @@ public class MovingBlock : MonoBehaviour
 
     private void Move()
     {
+        if (canMove == false)
+            return;
+
         elapsedTime += Time.deltaTime;
 
         elapsedTime %= moveDuration;
 
         float newXposition = movementCurve.Evaluate(elapsedTime / moveDuration);
 
-        cube.localPosition = new Vector3(newXposition, cube.localPosition.y, cube.localPosition.z);
+        block.localPosition = new Vector3(newXposition, block.localPosition.y, block.localPosition.z);
     }
-
 }

@@ -1,5 +1,5 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BlockPositionSetter : MonoBehaviour
@@ -16,15 +16,17 @@ public class BlockPositionSetter : MonoBehaviour
     [SerializeField] private Transform startPosition;
     [SerializeField] private Transform endPosition;
 
+    public Action BlockInPositionEvent;
+
     private void Awake()
     {
         if(animator != null)
             animator.enabled = false;
 
-        block.transform.position = startPosition.position;
-
         if(blockRenderer != null)
             blockRenderer.enabled = false;
+
+        block.transform.position = startPosition.position;
     }
 
     public void MoveIntoPosition()
