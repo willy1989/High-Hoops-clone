@@ -13,7 +13,7 @@ public class BlocksPositionManager : MonoBehaviour, IResetable
 
     private BlockPositionSetterGroup nextBlockPositionSetterGroup;
 
-    private int firstBlocksThreshold = 6;
+    private int firstBlocksThreshold = 7;
 
     private IEnumerator setBlockCoroutine;
 
