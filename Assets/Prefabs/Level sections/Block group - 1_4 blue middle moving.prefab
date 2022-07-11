@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1078088244222066795}
   - component: {fileID: 1443112771320119379}
   m_Layer: 0
-  m_Name: Invisible blue block
+  m_Name: Invisible red block
   m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1506eb6e959bb5943a6431a13419c63c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballColor: 1
+  ballColor: 0
 --- !u!114 &1443112771320119379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eefbee1a70e8a7848991993081e592c7, type: 2}
+  - {fileID: 2100000, guid: 9037dc5ac2c40a84ca8b64ba07d83ef6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 7919509825929027939}
   - component: {fileID: 7135819182641438614}
   m_Layer: 0
-  m_Name: Invisible blue block
+  m_Name: Invisible red block
   m_TagString: Waypoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1506eb6e959bb5943a6431a13419c63c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballColor: 1
+  ballColor: 0
 --- !u!114 &7135819182641438614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 7919509826553424059}
   - component: {fileID: 7919509826553424058}
   m_Layer: 0
-  m_Name: 1/4 red
+  m_Name: 1/4 blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -592,7 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1506eb6e959bb5943a6431a13419c63c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballColor: 0
+  ballColor: 1
 --- !u!114 &2046429947923922942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,7 +631,7 @@ GameObject:
   - component: {fileID: 7919509826885584059}
   - component: {fileID: 1250075052805184913}
   m_Layer: 0
-  m_Name: Block group - 1_4 red middle moving
+  m_Name: Block group - 1_4 blue middle moving
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
