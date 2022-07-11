@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AutoPilotManager : Singleton<AutoPilotManager>, IResetable
 {
-    [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
-
     [SerializeField] private BallXMovement ballXMovement;
 
     [SerializeField] private int grabbedLetterThreshold;
@@ -22,7 +20,7 @@ public class AutoPilotManager : Singleton<AutoPilotManager>, IResetable
     {
         base.Awake();
 
-        ballNavigationWaypointManager.ballReachedEndEvent += StopAutoPilot;
+        BallNavigationWaypointManager.Instance.BallReachedEndEvent += StopAutoPilot;
 
         ResetState();
     }

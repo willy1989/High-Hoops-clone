@@ -12,7 +12,6 @@ public class GameLoopManager : Singleton<GameLoopManager>
     [SerializeField] private LevelLoader levelLoader;
 
     [SerializeField] private DragInput dragInput;
-    [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
     [SerializeField] private BallColorManager ballColorManager;
     [SerializeField] private BallSpawnManager ballSpawnManager;
     [SerializeField] private BlocksPositionManager blocksPositionManager;
@@ -29,7 +28,7 @@ public class GameLoopManager : Singleton<GameLoopManager>
         base.Awake();
 
         ballColorManager.ballCollisionOppositeColorEvent += GameLosePhase;
-        ballNavigationWaypointManager.ballReachedEndEvent += GameWinPhase;
+        BallNavigationWaypointManager.Instance.BallReachedEndEvent += GameWinPhase;
         dragInput.FirstInputRegisteredEvent += GameStartPhase;
 
         restartButton.onClick.RemoveAllListeners();
@@ -56,7 +55,7 @@ public class GameLoopManager : Singleton<GameLoopManager>
     {
         levelLoader.LoadLevel();
 
-        ballNavigationWaypointManager.PrepareWaypoints();
+        BallNavigationWaypointManager.Instance.PrepareWaypoints();
 
         blocksPositionManager.SetBlockPositionSetterGroups(levelLoader.CurrentLevel.BlockPositionSetterGroups);
 

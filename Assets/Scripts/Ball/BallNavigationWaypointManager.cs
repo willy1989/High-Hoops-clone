@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallNavigationWaypointManager : MonoBehaviour
+public class BallNavigationWaypointManager : Singleton<BallNavigationWaypointManager>
 {
     [SerializeField] private BallColorManager ballColorManager;
 
@@ -23,7 +23,14 @@ public class BallNavigationWaypointManager : MonoBehaviour
 
     private bool touchedEndZoneOnce = false;
 
-    public Action ballReachedEndEvent;
+    public Action BallReachedEndEvent;
+
+    public Action BallCollidedWithWayPointEvent;
+
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -38,7 +45,9 @@ public class BallNavigationWaypointManager : MonoBehaviour
 
             Waypoint waypoint = other.GetComponent<Waypoint>();
 
-            if(waypointGroupIndex != waypointGroups.Length-1)
+            BallCollidedWithWayPointEvent?.Invoke();
+
+            if (waypointGroupIndex != waypointGroups.Length-1)
             {
                 other.enabled = false;
                 SetNextWaypoint();
@@ -46,7 +55,7 @@ public class BallNavigationWaypointManager : MonoBehaviour
 
             else if (waypointGroupIndex == waypointGroups.Length-1 && touchedEndZoneOnce == false)
             {
-                ballReachedEndEvent?.Invoke();
+                BallReachedEndEvent?.Invoke();
                 SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.Victory);
                 touchedEndZoneOnce = true;
             }

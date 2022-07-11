@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BallYMovement : MonoBehaviour, IResetable
 {
-    [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
-
     [SerializeField] private AnimationCurve yMovementFunction;
 
     [Range(0.5f, 5f)]
@@ -42,9 +40,9 @@ public class BallYMovement : MonoBehaviour, IResetable
         if (canMove == false)
             return;
 
-        Waypoint previousWaypoint = ballNavigationWaypointManager.PreviousWaypoint;
+        Waypoint previousWaypoint = BallNavigationWaypointManager.Instance.PreviousWaypoint;
 
-        Waypoint nextWaypoint = ballNavigationWaypointManager.NextWaypoint;
+        Waypoint nextWaypoint = BallNavigationWaypointManager.Instance.NextWaypoint;
 
         float t = (Mathf.Abs(previousWaypoint.transform.position.z - transform.position.z))
                                / Mathf.Abs(nextWaypoint.transform.position.z - previousWaypoint.transform.position.z);
