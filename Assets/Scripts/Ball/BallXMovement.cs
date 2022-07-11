@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BallXMovement : MonoBehaviour, IResetable
 {
-    [SerializeField] private BallNavigationWaypointManager ballNavigationWaypointManager;
-
     [SerializeField] private Transform xAxisTarget;
 
     [SerializeField] private DragInput dragInput;
@@ -57,9 +55,9 @@ public class BallXMovement : MonoBehaviour, IResetable
 
     private void AutoPilotXAxisMovement()
     {
-        Waypoint previousWaypoint = ballNavigationWaypointManager.PreviousWaypoint;
+        Waypoint previousWaypoint = BallNavigationWaypointManager.Instance.PreviousWaypoint;
 
-        Waypoint nextWaypoint = ballNavigationWaypointManager.NextWaypoint;
+        Waypoint nextWaypoint = BallNavigationWaypointManager.Instance.NextWaypoint;
 
         float t = (Mathf.Abs(previousWaypoint.transform.position.z - transform.position.z)) 
                    / Mathf.Abs(nextWaypoint.transform.position.z - previousWaypoint.transform.position.z);
