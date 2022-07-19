@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7263366673574740246}
-  moveDuration: 1
+  moveDuration: 0.5
   movementCurve:
     serializedVersion: 2
     m_Curve: []
