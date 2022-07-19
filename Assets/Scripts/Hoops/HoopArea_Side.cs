@@ -14,6 +14,6 @@ public class HoopArea_Side : HoopArea
     protected override void DoCollisionAction()
     {
         hoopAnimation.SpinHoopAnimation();
-        SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.HitHoopSide);
+        SoundEffectManager.Instance.PlaySoundEffect("Hit hoop side");
     }
 }

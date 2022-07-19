@@ -34,7 +34,7 @@ public class AutoPilotManager : Singleton<AutoPilotManager>, IResetable
     {
         hoopsCount++;
 
-        SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.HitHoopCenter);
+        SoundEffectManager.Instance.PlaySoundEffect("Hit hoop center");
     }
 
     public void StartAutoPilot(float autoPilotDuration)

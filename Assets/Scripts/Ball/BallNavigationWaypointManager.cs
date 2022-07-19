@@ -40,7 +40,7 @@ public class BallNavigationWaypointManager : Singleton<BallNavigationWaypointMan
         else if (other.CompareTag(Constants.Waypoint_Tag))
         {
             ballAnimation.BounceAnimation();
-            SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.Jump);
+            SoundEffectManager.Instance.PlaySoundEffect("Jump");
             ballVfx.PlayVfx(ballVfxType: BallVfxType.DustPoof);
 
             Waypoint waypoint = other.GetComponent<Waypoint>();
@@ -56,7 +56,7 @@ public class BallNavigationWaypointManager : Singleton<BallNavigationWaypointMan
             else if (waypointGroupIndex == waypointGroups.Length-1 && touchedEndZoneOnce == false)
             {
                 BallReachedEndEvent?.Invoke();
-                SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.Victory);
+                SoundEffectManager.Instance.PlaySoundEffect("Game win");
                 touchedEndZoneOnce = true;
             }
         }

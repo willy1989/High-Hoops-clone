@@ -13,7 +13,6 @@ public class DragInput : MonoBehaviour
     {
         UpdateDragInput();
     }
-
     private void UpdateDragInput()
     {
         if(Input.touchCount > 0)
@@ -26,8 +25,6 @@ public class DragInput : MonoBehaviour
         else
             DragInputVector = Vector2.zero;
     }
-
-
     public void StartListenToFirstInput()
     {
         StartCoroutine(ListenToFirstInputCoroutine());

@@ -19,7 +19,7 @@ public class BallSpawnManager : MonoBehaviour
         ballCollider.enabled = false;
         ballRenderer.enabled = false;
 
-        SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.BallDeath);
+        SoundEffectManager.Instance.PlaySoundEffect("Ball death");
 
         if (ballColorManager.CurrentBallColor == BallColor.Blue)
             ballVfx.PlayVfx(ballVfxType: BallVfxType.BlueExplosion);
@@ -40,7 +40,7 @@ public class BallSpawnManager : MonoBehaviour
         ballCollider.enabled = true;
         ballRenderer.enabled = true;
 
-        SoundEffectPlayer.Instance.PlaySoundEffect(SoudEffect.BallSpawn);
+        SoundEffectManager.Instance.PlaySoundEffect("Ball spawn");
 
         ballAnimation.SpawnBallAnimation();
     }
