@@ -17,6 +17,7 @@ public class GameLoopManager : Singleton<GameLoopManager>
     [SerializeField] private BlocksPositionManager blocksPositionManager;
     [SerializeField] private CameraManager cameraManager;
     [SerializeField] private OrbitalCameraRig orbitalCameraRig;
+    [SerializeField] private AdsManager adsManager;
 
     [SerializeField] private Button restartButton;
     [SerializeField] private Button nextLevelButton;
@@ -53,6 +54,8 @@ public class GameLoopManager : Singleton<GameLoopManager>
     /// </summary>
     private IEnumerator ResetGamePhaseCoroutine()
     {
+        adsManager.ShowInterstitialAd();
+
         levelLoader.LoadLevel();
 
         BallNavigationWaypointManager.Instance.PrepareWaypoints();

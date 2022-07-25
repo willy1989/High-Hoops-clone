@@ -58,7 +58,9 @@
     <Compile Include="Assets\Scripts\Ball\BallXMovement.cs" />
     <Compile Include="Assets\Scripts\Ball\BallNavigationWaypointManager.cs" />
     <Compile Include="Assets\Scripts\Ball\BallSpawnManager.cs" />
+    <Compile Include="Assets\Scripts\AdsManager.cs" />
     <Compile Include="Assets\Scripts\WaypointGroup.cs" />
+    <Compile Include="Assets\Scripts\Sound\SoundEffect_ScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Ball\BallYMovement.cs" />
     <Compile Include="Assets\Scripts\Block\Block positioning\BlockPositionSetterGroup.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Assets\Scripts\Ball\BallAnimation.cs" />
     <Compile Include="Assets\Scripts\Hoops\HoopArea_Side.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
+    <Compile Include="Assets\Scripts\Sound\SoundEffectManager.cs" />
     <Compile Include="Assets\Scripts\ColorWall.cs" />
     <Compile Include="Assets\Scripts\Block\Block positioning\BlocksPositionManager.cs" />
     <Compile Include="Assets\Scripts\Ball\BallZMovement.cs" />
@@ -90,8 +93,6 @@
     <Compile Include="Assets\Scripts\Block\MovingBlock.cs" />
     <Compile Include="Assets\Scripts\Level.cs" />
     <Compile Include="Assets\Scripts\Constants.cs" />
-    <Compile Include="Assets\Scripts\Sound\SoundEffectManager.cs" />
-    <Compile Include="Assets\Scripts\Sound\SoundEffect_ScriptableObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -776,6 +777,18 @@
     <ProjectReference Include="Unity.RenderPipelines.Core.Editor.csproj">
       <Project>{BCA46564-28CD-F714-C8A1-B486C516D91C}</Project>
       <Name>Unity.RenderPipelines.Core.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.Monetization.csproj">
+      <Project>{4D691E43-8BB0-901A-679E-9D07F5288CAC}</Project>
+      <Name>UnityEngine.Monetization</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.Advertisements.csproj">
+      <Project>{540DAB25-9FB0-F3FB-EFC4-6F2AA00D2D3D}</Project>
+      <Name>UnityEngine.Advertisements</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.Advertisements.Editor.csproj">
+      <Project>{0E4BF1F6-CD10-51B2-E917-C77163A47A01}</Project>
+      <Name>UnityEngine.Advertisements.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
